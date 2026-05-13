@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JagonMatika - Quiz Aktif</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/bootstrap-custom.css" rel="stylesheet">
+
+  <style>
+    .quiz-option {
+      transition: all 0.2s ease;
+    }
+    .quiz-option:hover {
+      background-color: rgba(0, 88, 189, 0.05);
+    }
+    .timer-bar {
+      height: 12px;
+      border-radius: 50px;
+      background: linear-gradient(90deg, var(--error) 0%, var(--error) 100%);
+      animation: shrink 30s linear infinite;
+    }
+    @keyframes shrink {
+      0% { width: 70%; }
+      100% { width: 0%; }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface d-flex flex-column min-vh-100">
+
+  <!-- TopAppBar -->
+  <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
+    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
+      <div class="container-fluid">
+        <!-- Brand Logo Only -->
+        <div class="d-flex align-items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-size: 28px;">school</span>
+          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+        </div>
+
+        <!-- Right Side Items -->
+        <div class="d-flex align-items-center gap-3 ms-auto">
+          <div class="d-none d-sm-flex align-items-center flex-column text-end">
+            <span class="label-lg text-primary small">Student Name</span>
+            <span class="small text-on-surface-variant">Level 5 Explorer</span>
+          </div>
+          <div class="rounded-circle overflow-hidden border border-2" style="width: 40px; height: 40px; border-color: var(--primary-container);">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIlTLx0-CE9JgxFX_OtTTlsZCsQdjEwrJo6UZSzCA3fXsDLRqLRR7zLrSvT6vz0yoC1f9UAom4peAagueZ5XJ_wP27EJ2PDD3GDU4c_LjLtA8dmmWRWsClmoHi7wP78vRREPvTHEtGzSsNuz8ZVvdou-9vI7KOmScSbkAgYg1HpZcqAEeHhVMJqWBBcwS5LxHz-xpZT5wgOcqvwG57-0DnUMJ0jUVyEHYqhPDPF81O18o6ApHmTyjKkP5ubsFgtqCnEcqisxEgD9ma" alt="Student avatar" class="w-100 h-100 object-fit-cover">
+          </div>
+          <button class="btn btn-link text-on-surface-variant p-0" type="button" title="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow-1 pt-5 pb-3 px-3 margin-desktop">
+    <div class="container-max mx-auto">
+      <!-- Quiz Progress Header -->
+      <div class="row mb-4 align-items-end gx-4">
+        <div class="col-12 col-md-6">
+          <h2 class="headline-lg-mobile headline-lg text-primary mb-2">Soal 3 dari 10</h2>
+          <div class="progress" style="height: 1.25rem; border-radius: 50px; border: 2px solid var(--surface-container-highest);">
+            <div class="progress-bar" style="width: 30%; background: linear-gradient(90deg, var(--tertiary), var(--tertiary-fixed));">
+              <span class="material-symbols-outlined position-absolute end-2 top-50 translate-middle-y text-tertiary" style="font-size: 20px;">stars</span>
+            </div>
+          </div>
+        </div>
+        <!-- Countdown Timer -->
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+          <div class="bg-surface-container-low p-3 rounded-2 border border-1 text-center" style="border-color: rgba(0, 88, 189, 0.1);">
+            <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
+              <span class="material-symbols-outlined text-error">timer</span>
+              <span class="headline-md text-on-surface">00:22</span>
+            </div>
+            <div class="progress" style="height: 8px; border-radius: 50px;">
+              <div class="progress-bar bg-danger timer-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Central Question Card -->
+      <section class="mb-5">
+        <div class="bg-surface-container-lowest ambient-card rounded-4 p-5 border position-relative overflow-hidden" style="border-color: rgba(114, 119, 133, 0.3);">
+          <!-- Decorative elements -->
+          <div class="position-absolute" style="top: -40px; right: -40px; width: 128px; height: 128px; background-color: rgba(255, 209, 103, 0.2); border-radius: 50%; filter: blur(64px);"></div>
+          <div class="position-absolute" style="bottom: -40px; left: -40px; width: 160px; height: 160px; background-color: rgba(20, 112, 232, 0.1); border-radius: 50%; filter: blur(64px);"></div>
+
+          <!-- Content -->
+          <div class="text-center position-relative z-2">
+            <span class="badge bg-primary-fixed text-on-primary-fixed label-lg mb-4 d-inline-block">Perkalian Dasar</span>
+
+            <h3 class="headline-xl text-on-surface mb-4">
+              Berapa hasil dari <span class="text-primary">12 x 5</span>?
+            </h3>
+
+            <div class="d-flex justify-content-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0bAovD4622ihoqhLW1Rwy0Vtw-OiLBN8pTFXpyULLgGSNZjUadmB3xENHn0-KbsCTULRDb883kvvw4biuy2BqXJIYdoitQykp_lWtCY0difGyp4nrpCmXPOyAu-luOGsfFcoUi26xW8dvkhrxuEvbFg0GlH3XAsqRzpM1OrQjF2E1pZnTK4zbU98dIxKNfMFiq6ZvDXoRk0zJPLm83SgF-eg-viHt40OFUQ2J0ffFg5ovGcWVLwBTvM3Qar5Ja9EBlI0I1YAlfw7F" alt="Math illustration" class="rounded-3" style="width: 192px; height: 192px; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Multiple Choice Buttons -->
+      <section class="row g-3 mb-5">
+        <!-- Option A -->
+        <div class="col-12 col-md-6">
+          <button class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4 chunky-button-primary" style="border-color: var(--primary-container); justify-content: flex-start;">
+            <div class="bg-primary text-on-primary rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">A</div>
+            <span class="headline-md text-on-surface flex-grow-1 text-start">45</span>
+            <span class="material-symbols-outlined text-primary opacity-0">check_circle</span>
+          </button>
+        </div>
+
+        <!-- Option B -->
+        <div class="col-12 col-md-6">
+          <button class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4 chunky-button-secondary" style="border-color: var(--secondary); justify-content: flex-start;">
+            <div class="bg-secondary text-on-secondary rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">B</div>
+            <span class="headline-md text-on-surface flex-grow-1 text-start">60</span>
+            <span class="material-symbols-outlined text-secondary opacity-0">check_circle</span>
+          </button>
+        </div>
+
+        <!-- Option C -->
+        <div class="col-12 col-md-6">
+          <button class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4 chunky-button-tertiary" style="border-color: var(--tertiary); justify-content: flex-start;">
+            <div class="bg-tertiary text-on-tertiary rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">C</div>
+            <span class="headline-md text-on-surface flex-grow-1 text-start">55</span>
+            <span class="material-symbols-outlined text-tertiary opacity-0">check_circle</span>
+          </button>
+        </div>
+
+        <!-- Option D -->
+        <div class="col-12 col-md-6">
+          <button class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4" style="border-color: var(--error); justify-content: flex-start;">
+            <div class="bg-error text-on-error rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">D</div>
+            <span class="headline-md text-on-surface flex-grow-1 text-start">70</span>
+            <span class="material-symbols-outlined text-error opacity-0">check_circle</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Action Bar -->
+      <div class="row align-items-center g-3 mb-4">
+        <div class="col-12 col-md-6">
+          <button class="btn btn-link text-on-surface-variant p-0 d-flex align-items-center gap-2 label-lg text-decoration-none">
+            <span class="material-symbols-outlined">lightbulb</span>
+            Gunakan Petunjuk (-5 poin)
+          </button>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-end gap-3">
+          <button class="btn px-4 py-2 rounded-pill bg-surface-container-highest text-on-surface-variant label-lg">
+            Lewati Soal
+          </button>
+          <button class="btn px-5 py-2 rounded-pill bg-primary-light text-on-primary-container headline-md chunky-button-primary d-flex align-items-center gap-2">
+            Lanjut
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-low border-top footer mt-auto">
+    <div class="text-center py-3 px-3">
+      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

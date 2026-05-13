@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JagonMatika - Pilih Tantanganmu</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/bootstrap-custom.css" rel="stylesheet">
+</head>
+<body class="bg-surface text-on-surface d-flex flex-column min-vh-100">
+
+  <!-- TopAppBar -->
+  <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
+    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
+      <div class="container-fluid">
+        <!-- Brand Logo Only -->
+        <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+
+        <!-- Right Side Items -->
+        <div class="d-flex align-items-center gap-3 ms-auto">
+          <div class="d-none d-sm-flex align-items-center flex-column text-end">
+            <p class="label-lg text-on-surface-variant mb-0 small">Halo,</p>
+            <p class="headline-md text-primary mb-0" style="font-size: 16px;">Student Name</p>
+          </div>
+          <div class="rounded-circle overflow-hidden border border-2" style="width: 40px; height: 40px; border-color: var(--primary-container);">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Student avatar" class="w-100 h-100 object-fit-cover">
+          </div>
+          <button class="btn btn-link text-on-surface-variant p-0" type="button" title="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow-1 py-5">
+    <div class="container-max margin-desktop">
+      <!-- Hero Welcome Section -->
+      <div class="mb-5 text-center text-md-start">
+        <h1 class="headline-xl text-primary mb-4">Ayo Pilih Tantanganmu!</h1>
+        <p class="body-lg text-on-surface-variant" style="max-width: 600px;">Sudah siap menjadi jagoan matematika hari ini? Pilih kategori yang ingin kamu kuasai dan kumpulkan bintang sebanyak-banyaknya!</p>
+      </div>
+
+      <!-- Category Grid: Asymmetric Bento-inspired layout -->
+      <div class="row g-4 mb-5">
+        <!-- Penjumlahan (Large Feature Card - 3 cols) -->
+        <div class="col-12 col-md-6 d-flex">
+          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary); border-bottom-color: var(--primary);">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="p-3 rounded-2" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary-light);">
+                <span class="material-symbols-outlined icon-xl">add_circle</span>
+              </div>
+              <span class="label-lg rounded-pill px-3 py-1" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary-light);">Level 1-5</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="headline-lg text-primary mb-2">Penjumlahan</h3>
+              <p class="body-md text-on-surface-variant">Gabungkan angka-angka dan temukan hasil yang luar biasa!</p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Pengurangan (3 cols) -->
+        <div class="col-12 col-md-6 d-flex">
+          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--error); border-bottom-color: var(--error);">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="p-3 rounded-2" style="background-color: rgba(186, 26, 26, 0.2); color: var(--error);">
+                <span class="material-symbols-outlined icon-xl">do_not_disturb_on</span>
+              </div>
+              <span class="label-lg rounded-pill px-3 py-1" style="background-color: rgba(186, 26, 26, 0.2); color: var(--error);">Level 1-4</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="headline-lg text-error mb-2">Pengurangan</h3>
+              <p class="body-md text-on-surface-variant">Berapa sisanya? Pecahkan misteri angka yang hilang!</p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Perkalian (2 cols) -->
+        <div class="col-12 col-md-4 d-flex">
+          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--secondary); border-bottom-color: var(--secondary);">
+            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(120, 90, 0, 0.2); color: var(--secondary); width: fit-content;">
+              <span class="material-symbols-outlined icon-lg">close</span>
+            </div>
+            <div>
+              <h3 class="headline-md text-secondary mb-2">Perkalian</h3>
+              <p class="label-lg text-on-surface-variant">Lipat gandakan kekuatan angkamu!</p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Pembagian (2 cols) -->
+        <div class="col-12 col-md-4 d-flex">
+          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--tertiary); border-bottom-color: var(--tertiary);">
+            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(0, 105, 77, 0.1); color: var(--tertiary); width: fit-content;">
+              <span class="material-symbols-outlined icon-lg">percent</span>
+            </div>
+            <div>
+              <h3 class="headline-md text-tertiary mb-2">Pembagian</h3>
+              <p class="label-lg text-on-surface-variant">Bagi rata tantangan ini dengan ceria!</p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Campuran (2 cols) -->
+        <div class="col-12 col-md-4 d-flex">
+          <button class="w-100 text-start bg-primary-light text-white p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary-light); border-bottom-color: white;">
+            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(255, 255, 255, 0.2); width: fit-content;">
+              <span class="material-symbols-outlined icon-lg text-white">extension</span>
+            </div>
+            <div>
+              <h3 class="headline-md text-white mb-2">Campuran</h3>
+              <p class="label-lg text-white-50">Uji kemampuanmu dengan semua operasi!</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Decorative Progress Section -->
+      <div class="bg-surface-container-low rounded-4 p-4 border position-relative overflow-hidden" style="border-color: rgba(114, 119, 133, 0.3);">
+        <div class="position-relative z-2 d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+          <div>
+            <h2 class="headline-md text-on-surface mb-2">Progress Belajarmu</h2>
+            <p class="body-md text-on-surface-variant">Kamu sudah menyelesaikan 12 tantangan minggu ini!</p>
+          </div>
+          <div class="w-100 w-md-50">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="label-lg text-primary">Target Mingguan</span>
+              <span class="label-lg text-primary">75%</span>
+            </div>
+            <div class="progress-custom">
+              <div class="progress-bar" style="width: 75%; background: linear-gradient(90deg, var(--tertiary), var(--tertiary-fixed));">
+                <span class="material-symbols-outlined position-absolute end-0 top-50 translate-middle-y text-secondary-container" style="font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">stars</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Background Decoration -->
+        <div class="position-absolute top-0 end-0 opacity-10 pe-none">
+          <span class="material-symbols-outlined" style="font-size: 200px;">calculate</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-low border-top footer mt-auto">
+    <div class="text-center py-3 px-3">
+      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

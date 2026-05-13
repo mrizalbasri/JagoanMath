@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JagonMatika - Hasil Belajar</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/bootstrap-custom.css" rel="stylesheet">
+
+  <style>
+    .bouncy-button {
+      border-bottom: 4px solid currentColor;
+      transition: all 0.1s ease;
+    }
+    .bouncy-button:active {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface d-flex flex-column min-vh-100">
+
+  <!-- TopAppBar -->
+  <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
+    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
+      <div class="container-fluid">
+        <!-- Brand Logo Only -->
+        <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+
+        <!-- Right Side Items -->
+        <div class="d-flex align-items-center gap-3 ms-auto">
+          <div class="d-none d-sm-flex align-items-center flex-column text-end">
+            <span class="label-lg text-on-surface small">Student Name</span>
+            <span class="small text-on-surface-variant">Level 5 Explorer</span>
+          </div>
+          <div class="rounded-circle overflow-hidden border border-2" style="width: 40px; height: 40px; border-color: var(--primary-container);">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfIrfpUc-fDxw1hePmZyNgBcotT0pmyNfAsTFIi2p4DQH8XROX8oZkWRy0MsKz1xHACX6LAYGOgrpTSng9All9sbk9smFbt4SAZRFuYqW9f-bXHA2_Pc1HgMfYYqOz3cF-hAZwUkdeE0AjoCbswNCtxl4Unz-MTh8Rh5SmfAvo_GKK6QtKt24-vgZZP6ljkfikJghN8Ij2V4HJsPOez69pU6LMQK2wlVXImcldWVFuI6hnvZw58TpTe_b2T0lK-KI-7yhwKE4gp60m" alt="Student avatar" class="w-100 h-100 object-fit-cover">
+          </div>
+          <button class="btn btn-link text-on-surface-variant p-0" type="button" title="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow-1 d-flex align-items-center justify-content-center py-5 px-3 position-relative overflow-hidden">
+    <!-- Decorative Background Icons -->
+    <div class="position-absolute opacity-20 pe-none" style="overflow: hidden;">
+      <div class="position-absolute text-primary" style="top: 40px; left: 40px;">
+        <span class="material-symbols-outlined" style="font-size: 64px;">star</span>
+      </div>
+      <div class="position-absolute text-secondary-container" style="bottom: 80px; right: 40px;">
+        <span class="material-symbols-outlined" style="font-size: 80px;">celebration</span>
+      </div>
+      <div class="position-absolute text-tertiary" style="top: 25%; right: 25%;">
+        <span class="material-symbols-outlined" style="font-size: 48px;">school</span>
+      </div>
+      <div class="position-absolute text-primary-light" style="bottom: 25%; left: 25%;">
+        <span class="material-symbols-outlined" style="font-size: 56px;">calculate</span>
+      </div>
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="position-relative z-2 w-100" style="max-width: 600px;">
+      <div class="bg-surface-container-lowest border border-1 rounded-2 shadow-lg p-5" style="border-color: rgba(114, 119, 133, 0.3);">
+        <!-- Celebratory Icon -->
+        <div class="mb-4 d-flex justify-content-center">
+          <div class="rounded-circle bg-tertiary-fixed d-flex align-items-center justify-content-center" style="width: 96px; height: 96px; box-shadow: 0 4px 8px rgba(0, 88, 189, 0.1);">
+            <span class="material-symbols-outlined" style="font-size: 40px; color: var(--tertiary);">workspace_premium</span>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="headline-lg-mobile headline-xl text-center mb-2">Hebat! Kamu Selesai!</h1>
+        <p class="body-lg text-center text-on-surface-variant mb-5">
+          Kamu baru saja menyelesaikan petualangan matematika hari ini!
+        </p>
+
+        <!-- Score Display -->
+        <div class="bg-primary-fixed border border-2 rounded-2 p-4 mb-4" style="border-color: var(--primary-container); transform: rotate(1deg);">
+          <div class="label-lg text-on-primary-fixed text-uppercase text-center mb-2">Skor Kamu</div>
+          <div class="headline-xl text-center text-primary">80 / 100</div>
+        </div>
+
+        <!-- Summary Grid -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6">
+            <div class="bg-surface-container-low p-3 rounded-2 border border-1 d-flex align-items-center gap-3" style="border-color: var(--surface-container-highest);">
+              <div class="bg-secondary-fixed rounded d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; color: var(--secondary);">
+                <span class="material-symbols-outlined">person</span>
+              </div>
+              <div>
+                <div class="small text-on-surface-variant text-uppercase fw-bold">Nama Siswa</div>
+                <div class="headline-md text-on-surface">Student Name</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="bg-surface-container-low p-3 rounded-2 border border-1 d-flex align-items-center gap-3" style="border-color: var(--surface-container-highest);">
+              <div class="bg-tertiary-fixed rounded d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; color: var(--tertiary);">
+                <span class="material-symbols-outlined">check_circle</span>
+              </div>
+              <div>
+                <div class="small text-on-surface-variant text-uppercase fw-bold">Benar</div>
+                <div class="headline-md text-on-surface">8 / 10</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="bg-surface-container-low p-3 rounded-2 border border-1 d-flex align-items-center gap-3" style="border-color: var(--surface-container-highest);">
+              <div class="bg-primary-fixed rounded d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; color: var(--primary);">
+                <span class="material-symbols-outlined">calendar_today</span>
+              </div>
+              <div>
+                <div class="small text-on-surface-variant text-uppercase fw-bold">Tanggal Selesai</div>
+                <div class="headline-md text-on-surface">24 Mei 2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex flex-column gap-3">
+          <button class="btn btn-tertiary chunky-button-tertiary w-100 d-flex align-items-center justify-content-center gap-2" style="padding: 12px 24px; font-size: 18px;">
+            <span class="material-symbols-outlined">play_arrow</span>
+            Main Lagi
+          </button>
+          <button class="btn w-100 d-flex align-items-center justify-content-center gap-2 bouncy-button" style="padding: 12px 24px; font-size: 18px; background-color: var(--surface-container-highest); color: var(--on-surface-variant);">
+            <span class="material-symbols-outlined">logout</span>
+            Keluar
+          </button>
+        </div>
+
+        <!-- Encouragement Card -->
+        <div class="mt-4 p-3 rounded-2 border border-2 border-dashed d-flex flex-column flex-md-row align-items-center gap-3" style="border-color: var(--secondary-container); background-color: rgba(255, 209, 103, 0.1);">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtSchy2oq6zzi6m4RTn6sRbxuGlGOWhl4jwpGHoy1JN8DP5lAW1f1Pm68TViGCMeFe-2Zez_GBDaFc5JbAEtbuQLizF9MzIZH52vZTTtGxjFwjAdfYni1OuomBCnAc7pWf_Mbdo9X1ADc45R7Cnd3XNxSWVueEbmnvQ3pmiXgMGZVL7Z14C0-0drXAqnX9_-bZqPv5Jmw7XVLzlfEZeFADSD2Fy6Xb0FWt-eC8tj5_ptJDMDtAYdQF9BsVjH9i1S_uRlyT0rQ2eYHW" alt="Encouragement" style="width: 80px; height: 80px; object-fit: cover;">
+          <div class="text-center text-md-start">
+            <h3 class="headline-md text-on-secondary-container mb-1">Terus Berlatih!</h3>
+            <p class="body-md text-on-surface-variant mb-0">Kamu hampir mendapatkan lencana "Master Perkalian". Satu kali lagi!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-low border-top footer mt-auto">
+    <div class="text-center py-3 px-3">
+      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
