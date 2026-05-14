@@ -28,7 +28,7 @@
         <div class="d-flex align-items-center gap-3 ms-auto">
           <div class="d-none d-sm-flex align-items-center flex-column text-end">
             <p class="label-lg text-on-surface-variant mb-0 small">Halo,</p>
-            <p class="headline-md text-primary mb-0" style="font-size: 16px;">Student Name</p>
+            <p id="nama-profil" class="headline-md text-primary mb-0" style="font-size: 16px;">Student Name</p>
           </div>
           <div class="rounded-circle overflow-hidden border border-2" style="width: 40px; height: 40px; border-color: var(--primary-container);">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Student avatar" class="w-100 h-100 object-fit-cover">
@@ -50,16 +50,15 @@
         <p class="body-lg text-on-surface-variant" style="max-width: 600px;">Sudah siap menjadi jagoan matematika hari ini? Pilih kategori yang ingin kamu kuasai dan kumpulkan bintang sebanyak-banyaknya!</p>
       </div>
 
-      <!-- Category Grid: Asymmetric Bento-inspired layout -->
+      <!-- Category Grid -->
       <div class="row g-4 mb-5">
-        <!-- Penjumlahan (Large Feature Card - 3 cols) -->
+        <!-- Penjumlahan -->
         <div class="col-12 col-md-6 d-flex">
-          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary); border-bottom-color: var(--primary);">
+          <button id="btn-penjumlahan" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary); border-bottom-color: var(--primary);">
             <div class="d-flex justify-content-between align-items-start">
               <div class="p-3 rounded-2" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary-light);">
                 <span class="material-symbols-outlined icon-xl">add_circle</span>
               </div>
-              <span class="label-lg rounded-pill px-3 py-1" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary-light);">Level 1-5</span>
             </div>
             <div class="mt-4">
               <h3 class="headline-lg text-primary mb-2">Penjumlahan</h3>
@@ -68,14 +67,13 @@
           </button>
         </div>
 
-        <!-- Pengurangan (3 cols) -->
+        <!-- Pengurangan -->
         <div class="col-12 col-md-6 d-flex">
-          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--error); border-bottom-color: var(--error);">
+          <button id="btn-pengurangan" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--error); border-bottom-color: var(--error);">
             <div class="d-flex justify-content-between align-items-start">
               <div class="p-3 rounded-2" style="background-color: rgba(186, 26, 26, 0.2); color: var(--error);">
                 <span class="material-symbols-outlined icon-xl">do_not_disturb_on</span>
               </div>
-              <span class="label-lg rounded-pill px-3 py-1" style="background-color: rgba(186, 26, 26, 0.2); color: var(--error);">Level 1-4</span>
             </div>
             <div class="mt-4">
               <h3 class="headline-lg text-error mb-2">Pengurangan</h3>
@@ -84,9 +82,9 @@
           </button>
         </div>
 
-        <!-- Perkalian (2 cols) -->
+        <!-- Perkalian -->
         <div class="col-12 col-md-4 d-flex">
-          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--secondary); border-bottom-color: var(--secondary);">
+          <button id="btn-perkalian" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--secondary); border-bottom-color: var(--secondary);">
             <div class="p-3 rounded-2 mb-4" style="background-color: rgba(120, 90, 0, 0.2); color: var(--secondary); width: fit-content;">
               <span class="material-symbols-outlined icon-lg">close</span>
             </div>
@@ -97,9 +95,9 @@
           </button>
         </div>
 
-        <!-- Pembagian (2 cols) -->
+        <!-- Pembagian -->
         <div class="col-12 col-md-4 d-flex">
-          <button class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--tertiary); border-bottom-color: var(--tertiary);">
+          <button id="btn-pembagian" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--tertiary); border-bottom-color: var(--tertiary);">
             <div class="p-3 rounded-2 mb-4" style="background-color: rgba(0, 105, 77, 0.1); color: var(--tertiary); width: fit-content;">
               <span class="material-symbols-outlined icon-lg">percent</span>
             </div>
@@ -110,41 +108,45 @@
           </button>
         </div>
 
-        <!-- Campuran (2 cols) -->
+        <!-- Campuran -->
         <div class="col-12 col-md-4 d-flex">
-          <button class="w-100 text-start bg-primary-light text-white p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary-light); border-bottom-color: white;">
-            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(255, 255, 255, 0.2); width: fit-content;">
-              <span class="material-symbols-outlined icon-lg text-white">extension</span>
+          <button id="btn-campuran" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary); border-bottom-color: var(--primary);">
+            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary); width: fit-content;">
+              <span class="material-symbols-outlined icon-lg">extension</span>
             </div>
             <div>
-              <h3 class="headline-md text-white mb-2">Campuran</h3>
-              <p class="label-lg text-white-50">Uji kemampuanmu dengan semua operasi!</p>
+              <h3 class="headline-md text-primary mb-2">Campuran</h3>
+              <p class="label-lg text-on-surface-variant">Uji kemampuanmu dengan semua operasi!</p>
             </div>
           </button>
         </div>
       </div>
 
-      <!-- Decorative Progress Section -->
+      <!-- Decorative Progress Section (DENGAN ID BARU) -->
       <div class="bg-surface-container-low rounded-4 p-4 border position-relative overflow-hidden" style="border-color: rgba(114, 119, 133, 0.3);">
-        <div class="position-relative z-2 d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+        <div class="position-relative d-flex flex-column flex-md-row align-items-center justify-content-between gap-4" style="z-index: 2;">
           <div>
             <h2 class="headline-md text-on-surface mb-2">Progress Belajarmu</h2>
-            <p class="body-md text-on-surface-variant">Kamu sudah menyelesaikan 12 tantangan minggu ini!</p>
+            <p id="teks-tantangan" class="body-md text-on-surface-variant">Kamu belum menyelesaikan tantangan minggu ini.</p>
           </div>
-          <div class="w-100 w-md-50">
+<div class="w-100 w-md-50">
             <div class="d-flex justify-content-between mb-2">
               <span class="label-lg text-primary">Target Mingguan</span>
-              <span class="label-lg text-primary">75%</span>
+              <span id="teks-persentase" class="label-lg text-primary">0%</span>
             </div>
-            <div class="progress-custom">
-              <div class="progress-bar" style="width: 75%; background: linear-gradient(90deg, var(--tertiary), var(--tertiary-fixed));">
-                <span class="material-symbols-outlined position-absolute end-0 top-50 translate-middle-y text-secondary-container" style="font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">stars</span>
+            
+            <!-- PROGRESS BAR YANG DIPERBAIKI -->
+            <div class="progress" style="height: 24px; border-radius: 50px; background-color: var(--surface-container-highest);">
+              <div id="bar-progress" class="progress-bar bg-success position-relative" style="width: 0%; transition: width 0.8s ease-in-out; border-radius: 50px;">
+                <span class="material-symbols-outlined position-absolute" style="right: 8px; top: 50%; transform: translateY(-50%); font-size: 16px; color: white;">stars</span>
               </div>
             </div>
+            
+          </div>
           </div>
         </div>
-        <!-- Background Decoration -->
-        <div class="position-absolute top-0 end-0 opacity-10 pe-none">
+        
+        <div class="position-absolute top-0 end-0 pe-none" style="z-index: 0; opacity: 0.05;">
           <span class="material-symbols-outlined" style="font-size: 200px;">calculate</span>
         </div>
       </div>
@@ -160,5 +162,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/category.js"></script>
 </body>
 </html>
