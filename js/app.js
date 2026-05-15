@@ -13,21 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (tombolMulai && kotakInputNama) {
         tombolMulai.addEventListener("click", function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
             const namaDiketik = kotakInputNama.value.trim();
 
             if (namaDiketik !== "") {
-
-                const namaLama = localStorage.getItem("namaPemainMath");
-                
-                if (namaLama !== namaDiketik) {
-                    localStorage.setItem("totalTantangan", 0);
-                }
- 
                 localStorage.setItem("namaPemainMath", namaDiketik);
-                
-                window.location.href = "category.html"; 
+
+                window.location.href = "category.html";
             } else {
                 alert("Namanya jangan dikosongin ya, isi dulu supaya bisa main!");
             }

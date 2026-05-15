@@ -87,7 +87,7 @@
   <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
     <nav class="navbar navbar-expand-md px-3 px-md-4 py-2">
       <div class="container-fluid">
-        <!-- Brand Logo Only -->
+        <!-- Brand Logo -->
         <div class="d-flex align-items-center gap-2">
           <span class="material-symbols-outlined text-primary" style="font-size: 24px;">calculate</span>
           <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 20px;">Jagoan Math</h1>
@@ -109,8 +109,13 @@
     <div class="container-max margin-desktop flex-grow-1 d-flex flex-column">
       <!-- Hero Welcome Section -->
       <div class="mb-2 mb-md-3 text-center text-md-start">
-        <h1 class="text-primary mb-1" style="font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700;">Ayo Pilih Tantanganmu!</h1>
-        <p class="text-on-surface-variant d-none d-md-block" style="max-width: 500px; font-size: 0.9rem;">Sudah siap menjadi jagoan matematika? Pilih kategori yang ingin kamu kuasai!</p>
+        <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+          <a href="index.html" class="d-flex align-items-center justify-content-center rounded-circle text-on-surface-variant" style="width: 36px; height: 36px; background: var(--surface-container-high); text-decoration: none;" aria-label="Kembali ke halaman utama">
+            <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+          </a>
+          <h1 class="text-primary mb-0" style="font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700;">Ayo Pilih Tantanganmu!</h1>
+        </div>
+        <p class="text-on-surface-variant d-none d-md-block mt-1" style="max-width: 500px; font-size: 0.9rem;">Sudah siap menjadi jagoan matematika? Pilih kategori yang ingin kamu kuasai!</p>
       </div>
 
       <!-- Category Grid -->
@@ -181,28 +186,12 @@
         </div>
       </div>
 
-      <!-- Progress Section -->
-      <div class="bg-surface-container-low rounded-3 p-3 border position-relative overflow-hidden progress-section" style="border-color: rgba(114, 119, 133, 0.3);">
-        <div class="position-relative d-flex flex-column flex-md-row align-items-center justify-content-between gap-2" style="z-index: 2;">
-          <div class="text-center text-md-start">
-            <h2 class="text-on-surface mb-1" style="font-size: 1rem; font-weight: 600;">Progress Belajarmu</h2>
-            <p id="teks-tantangan" class="text-on-surface-variant mb-0" style="font-size: 0.85rem;">Kamu belum menyelesaikan tantangan minggu ini.</p>
-          </div>
-          <div class="w-100" style="max-width: 300px;">
-            <div class="d-flex justify-content-between mb-1">
-              <span class="text-primary" style="font-size: 0.8rem; font-weight: 600;">Target Mingguan</span>
-              <span id="teks-persentase" class="text-primary" style="font-size: 0.8rem; font-weight: 600;">0%</span>
-            </div>
-            <div class="progress" style="height: 20px; border-radius: 50px; background-color: var(--surface-container-highest);">
-              <div id="bar-progress" class="progress-bar bg-success position-relative" style="width: 0%; transition: width 0.8s ease-in-out; border-radius: 50px;">
-                <span class="material-symbols-outlined position-absolute" style="right: 6px; top: 50%; transform: translateY(-50%); font-size: 14px; color: white;">stars</span>
-              </div>
-            </div>
-          </div>
+      <!-- Motivasi Section -->
+      <div class="bg-surface-container-low rounded-3 p-3 border d-flex align-items-center gap-3" style="border-color: rgba(114, 119, 133, 0.3);">
+        <div class="rounded-circle bg-tertiary-fixed d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px;">
+          <span class="material-symbols-outlined text-on-tertiary-fixed-variant" style="font-size: 20px;">lightbulb</span>
         </div>
-        <div class="position-absolute top-0 end-0 pe-none d-none d-md-block" style="z-index: 0; opacity: 0.05;">
-          <span class="material-symbols-outlined" style="font-size: 120px;">calculate</span>
-        </div>
+        <p class="text-on-surface-variant mb-0" style="font-size: 0.85rem;">Pilih kategori dan tantang dirimu! Semakin sering latihan, semakin jago!</p>
       </div>
     </div>
   </main>

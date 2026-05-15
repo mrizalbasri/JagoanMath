@@ -10,13 +10,14 @@ document.addEventListener("DOMContentLoaded", function() {
     if (statusLevel) statusLevel.textContent = `Level ${level.toUpperCase()}`;
     document.getElementById("label-kategori").textContent = kategori.toUpperCase();
 
-    let soalSekarang = 1;
+    let soalSekarang = 0;
     const totalSoal = 10;
     let skor = 0;
-    let jawabanBenarAngka = 0;
     let waktuTersisa = 30;
     let timerInterval;
     let sudahMenjawab = false;
+    let bankSoal = [];
+    let soalTerpilih = [];
 
     const teksPertanyaan = document.getElementById("teks-pertanyaan");
     const teksNomorSoal = document.getElementById("teks-nomor-soal");
@@ -36,78 +37,80 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("teks-opsi-3")
     ];
 
-    function dapatkanAngkaAcak() {
-        let max = 10;
-        if (level === "sedang") max = 50;
-        if (level === "sulit") max = 100;
-        return Math.floor(Math.random() * max) + 1;
+    // Fetch bank soal dari JSON menggunakan AJAX
+    async function ambilBankSoal() {
+        try {
+            const response = await fetch('data/soal.json');
+            if (!response.ok) throw new Error('Gagal memuat soal');
+
+            bankSoal = await response.json();
+            siapkanSoal();
+        } catch (error) {
+            console.error('Error:', error);
+            teksPertanyaan.textContent = 'Gagal memuat soal. Silakan refresh halaman.';
+        }
     }
 
-    function buatSoal() {
-        let angka1 = dapatkanAngkaAcak();
-        let angka2 = dapatkanAngkaAcak();
-        let operatorStr = "";
-        let kategoriAktif = kategori;
+    // Siapkan soal berdasarkan kategori dan level
+    function siapkanSoal() {
+        let soalKategori = [];
 
         if (kategori === "campuran") {
-            const pilihan = ["penjumlahan", "pengurangan", "perkalian", "pembagian"];
-            kategoriAktif = pilihan[Math.floor(Math.random() * pilihan.length)];
-        }
-
-        switch (kategoriAktif) {
-            case "penjumlahan":
-                jawabanBenarAngka = angka1 + angka2;
-                operatorStr = "+";
-                break;
-            case "pengurangan":
-                if (angka1 < angka2) {
-                    let temp = angka1;
-                    angka1 = angka2;
-                    angka2 = temp;
+            // Ambil soal dari semua kategori
+            const semuaKategori = ["penjumlahan", "pengurangan", "perkalian", "pembagian"];
+            semuaKategori.forEach(kat => {
+                if (bankSoal[kat] && bankSoal[kat][level]) {
+                    soalKategori = soalKategori.concat(bankSoal[kat][level]);
                 }
-                jawabanBenarAngka = angka1 - angka2;
-                operatorStr = "-";
-                break;
-            case "perkalian":
-                if (level === "sedang") { angka1 = Math.floor(Math.random() * 15)+1; angka2 = Math.floor(Math.random() * 10)+1;}
-                if (level === "sulit") { angka1 = Math.floor(Math.random() * 25)+1; angka2 = Math.floor(Math.random() * 20)+1;}
-                jawabanBenarAngka = angka1 * angka2;
-                operatorStr = "x";
-                break;
-            case "pembagian":
-                jawabanBenarAngka = angka1;
-                angka1 = angka1 * angka2;
-                operatorStr = ":";
-                break;
-        }
-
-        teksPertanyaan.innerHTML = `<span class="text-primary">${angka1} ${operatorStr} ${angka2}</span> = ?`;
-        buatPilihanJawaban(jawabanBenarAngka);
-    }
-
-    function buatPilihanJawaban(jawabanBenar) {
-        let opsi = [jawabanBenar];
-
-        while (opsi.length < 4) {
-            let pengecoh = jawabanBenar + (Math.floor(Math.random() * 10) - 5);
-            if (pengecoh !== jawabanBenar && pengecoh >= 0 && !opsi.includes(pengecoh)) {
-                opsi.push(pengecoh);
+            });
+        } else {
+            // Ambil soal dari kategori tertentu
+            if (bankSoal[kategori] && bankSoal[kategori][level]) {
+                soalKategori = bankSoal[kategori][level];
             }
         }
 
-        opsi.sort(() => Math.random() - 0.5);
+        // Acak dan ambil 10 soal
+        soalTerpilih = acakArray(soalKategori).slice(0, totalSoal);
+
+        if (soalTerpilih.length === 0) {
+            teksPertanyaan.textContent = 'Soal tidak tersedia untuk kategori ini.';
+            return;
+        }
+
+        mulaiPertanyaanBaru();
+    }
+
+    // Fungsi untuk mengacak array
+    function acakArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // Tampilkan soal
+    function tampilkanSoal() {
+        const soal = soalTerpilih[soalSekarang];
+        teksPertanyaan.innerHTML = `<span class="text-primary">${soal.soal}</span> = ?`;
+
+        // Acak opsi jawaban
+        const opsiAcak = acakArray([...soal.opsi]);
 
         for (let i = 0; i < 4; i++) {
-            teksOpsi[i].textContent = opsi[i];
+            teksOpsi[i].textContent = opsiAcak[i];
             tombolOpsi[i].classList.remove("jawaban-benar", "jawaban-salah");
             tombolOpsi[i].disabled = false;
 
             tombolOpsi[i].onclick = function() {
-                cekJawaban(i, opsi[i] === jawabanBenar);
+                cekJawaban(i, opsiAcak[i] === soal.jawaban, soal.jawaban);
             };
         }
     }
 
+    // Timer
     function mulaiTimer() {
         waktuTersisa = 30;
         teksTimer.textContent = "00:30";
@@ -120,12 +123,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (waktuTersisa <= 0) {
                 clearInterval(timerInterval);
-                cekJawaban(-1, false);
+                const soal = soalTerpilih[soalSekarang];
+                cekJawaban(-1, false, soal.jawaban);
             }
         }, 1000);
     }
 
-    function cekJawaban(indexDipilih, isBenar) {
+    // Cek jawaban
+    function cekJawaban(indexDipilih, isBenar, jawabanBenar) {
         if (sudahMenjawab) return;
         sudahMenjawab = true;
         clearInterval(timerInterval);
@@ -136,11 +141,12 @@ document.addEventListener("DOMContentLoaded", function() {
             skor += 10;
             tombolOpsi[indexDipilih].classList.add("jawaban-benar");
         } else {
-            if(indexDipilih !== -1) {
+            if (indexDipilih !== -1) {
                 tombolOpsi[indexDipilih].classList.add("jawaban-salah");
             }
+            // Tampilkan jawaban benar
             for (let i = 0; i < 4; i++) {
-                if (parseInt(teksOpsi[i].textContent) === jawabanBenarAngka) {
+                if (parseInt(teksOpsi[i].textContent) === jawabanBenar) {
                     tombolOpsi[i].classList.add("jawaban-benar");
                 }
             }
@@ -148,26 +154,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Auto lanjut ke soal berikutnya setelah 1.5 detik
         setTimeout(() => {
+            soalSekarang++;
             if (soalSekarang < totalSoal) {
-                soalSekarang++;
                 mulaiPertanyaanBaru();
             } else {
                 localStorage.setItem("skorAkhir", skor);
-                let totalSelesai = parseInt(localStorage.getItem("totalTantangan")) || 0;
-                localStorage.setItem("totalTantangan", totalSelesai + 1);
                 window.location.href = "results.html";
             }
         }, 1500);
     }
 
+    // Mulai pertanyaan baru
     function mulaiPertanyaanBaru() {
         sudahMenjawab = false;
-        teksNomorSoal.textContent = `Soal ${soalSekarang}/${totalSoal}`;
-        progressBar.style.width = `${(soalSekarang / totalSoal) * 100}%`;
+        teksNomorSoal.textContent = `Soal ${soalSekarang + 1}/${totalSoal}`;
+        progressBar.style.width = `${((soalSekarang + 1) / totalSoal) * 100}%`;
 
-        buatSoal();
+        tampilkanSoal();
         mulaiTimer();
     }
 
-    mulaiPertanyaanBaru();
+    // Mulai quiz dengan fetch bank soal
+    ambilBankSoal();
 });

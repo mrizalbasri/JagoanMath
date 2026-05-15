@@ -27,26 +27,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if (btnPembagian) btnPembagian.addEventListener("click", () => pilihKategori("pembagian"));
     if (btnCampuran) btnCampuran.addEventListener("click", () => pilihKategori("campuran"));
 
-    // LOGIKA PROGRESS BAR MINGGUAN ---
-    const teksTantangan = document.getElementById("teks-tantangan");
-    const barProgress = document.getElementById("bar-progress");
-    const teksPersentase = document.getElementById("teks-persentase");
-
-    // Ambil data jumlah kuis yang sudah diselesaikan dari memori browser
-    let totalTantangan = parseInt(localStorage.getItem("totalTantangan")) || 0;
-    const targetMingguan = 10; 
-    
-    let persentase = (totalTantangan / targetMingguan) * 100;
-    if (persentase > 100) persentase = 100; // Maksimal 100%
-
-    if (teksTantangan && barProgress && teksPersentase) {
-        if (totalTantangan > 0) {
-            teksTantangan.textContent = `Kamu sudah menyelesaikan ${totalTantangan} tantangan minggu ini!`;
-        }
-        teksPersentase.textContent = `${Math.round(persentase)}%`;
-        
-        setTimeout(() => {
-            barProgress.style.width = `${persentase}%`;
-        }, 300);
-    }
+    // Progress section removed - no longer tracking weekly progress
 });

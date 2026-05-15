@@ -133,11 +133,6 @@
     <div class="container-max">
       <!-- Header Section -->
       <div class="w-100 mb-3 compact-header">
-        <!-- Back Button (Responsive) -->
-        <button id="btn-back" class="btn d-flex d-md-none align-items-center justify-content-center chunky-button-secondary mb-2" style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--surface-container); border: none;">
-          <span class="material-symbols-outlined">arrow_back_ios_new</span>
-        </button>
-
         <!-- Content Section -->
         <div class="w-100 d-flex flex-column align-items-center">
           <!-- Icon -->
@@ -145,9 +140,14 @@
             <span class="material-symbols-outlined" style="font-size: 36px;">calculate</span>
           </div>
 
-          <!-- Title -->
-          <h1 class="headline-lg-mobile headline-xl text-primary text-center mb-1" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">Pilih Level Kesulitan</h1>
-          <p class="body-md text-on-surface-variant text-center d-none d-md-block" style="max-width: 500px;">Seberapa menantang soal yang ingin kamu kerjakan?</p>
+          <!-- Title with Back Button -->
+          <div class="d-flex align-items-center gap-2">
+            <a href="category.html" class="d-flex align-items-center justify-content-center rounded-circle text-on-surface-variant" style="width: 36px; height: 36px; background: var(--surface-container-high); text-decoration: none;" aria-label="Kembali ke pilih kategori">
+              <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+            </a>
+            <h1 class="headline-lg-mobile headline-xl text-primary text-center mb-0" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">Pilih Level Kesulitan</h1>
+          </div>
+          <p class="body-md text-on-surface-variant text-center d-none d-md-block mt-1" style="max-width: 500px;">Seberapa menantang soal yang ingin kamu kerjakan?</p>
         </div>
       </div>
 
