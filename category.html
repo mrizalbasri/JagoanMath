@@ -14,149 +14,203 @@
 
   <!-- Custom CSS -->
   <link href="css/bootstrap-custom.css" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    .category-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .category-card:hover {
+      transform: translateY(-4px);
+    }
+    /* Compact styles */
+    @media (min-width: 768px) {
+      .compact-card {
+        padding: 1rem !important;
+      }
+      .compact-card .icon-box {
+        padding: 0.5rem !important;
+      }
+      .compact-card h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      .compact-card p {
+        font-size: 0.8rem !important;
+        margin-bottom: 0 !important;
+      }
+      .compact-card .mt-4 {
+        margin-top: 0.75rem !important;
+      }
+      .compact-card .mb-4 {
+        margin-bottom: 0.5rem !important;
+      }
+    }
+    @media (max-width: 767px) {
+      .category-card {
+        padding: 0.75rem !important;
+      }
+      .category-card .icon-box {
+        padding: 0.5rem !important;
+      }
+      .category-card .icon-box .material-symbols-outlined {
+        font-size: 20px !important;
+      }
+      .category-card h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 0 !important;
+      }
+      .category-card p {
+        display: none;
+      }
+      .category-card .mt-4 {
+        margin-top: 0.5rem !important;
+      }
+      .progress-section {
+        padding: 0.75rem !important;
+      }
+      .progress-section h2 {
+        font-size: 0.9rem !important;
+      }
+      .progress-section p {
+        font-size: 0.8rem !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-surface text-on-surface d-flex flex-column min-vh-100">
 
   <!-- TopAppBar -->
   <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
-    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
+    <nav class="navbar navbar-expand-md px-3 px-md-4 py-2">
       <div class="container-fluid">
         <!-- Brand Logo Only -->
-        <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+        <div class="d-flex align-items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-size: 24px;">calculate</span>
+          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 20px;">Jagoan Math</h1>
+        </div>
 
         <!-- Right Side Items -->
-        <div class="d-flex align-items-center gap-3 ms-auto">
-          <div class="d-none d-sm-flex align-items-center flex-column text-end">
-            <p class="label-lg text-on-surface-variant mb-0 small">Halo,</p>
-            <p id="nama-profil" class="headline-md text-primary mb-0" style="font-size: 16px;">Student Name</p>
+        <div class="d-flex align-items-center gap-2 ms-auto">
+          <span id="nama-profil" class="d-none d-sm-inline text-primary fw-bold" style="font-size: 14px;">Student</span>
+          <div class="rounded-circle overflow-hidden border border-2" style="width: 36px; height: 36px; border-color: var(--primary-container);">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Avatar" class="w-100 h-100 object-fit-cover">
           </div>
-          <div class="rounded-circle overflow-hidden border border-2" style="width: 40px; height: 40px; border-color: var(--primary-container);">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Student avatar" class="w-100 h-100 object-fit-cover">
-          </div>
-          <button class="btn btn-link text-on-surface-variant p-0" type="button" title="Settings">
-            <span class="material-symbols-outlined">settings</span>
-          </button>
         </div>
       </div>
     </nav>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow-1 py-5">
-    <div class="container-max margin-desktop">
+  <main class="flex-grow-1 py-2 py-md-3 d-flex flex-column">
+    <div class="container-max margin-desktop flex-grow-1 d-flex flex-column">
       <!-- Hero Welcome Section -->
-      <div class="mb-5 text-center text-md-start">
-        <h1 class="headline-xl text-primary mb-4">Ayo Pilih Tantanganmu!</h1>
-        <p class="body-lg text-on-surface-variant" style="max-width: 600px;">Sudah siap menjadi jagoan matematika hari ini? Pilih kategori yang ingin kamu kuasai dan kumpulkan bintang sebanyak-banyaknya!</p>
+      <div class="mb-2 mb-md-3 text-center text-md-start">
+        <h1 class="text-primary mb-1" style="font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700;">Ayo Pilih Tantanganmu!</h1>
+        <p class="text-on-surface-variant d-none d-md-block" style="max-width: 500px; font-size: 0.9rem;">Sudah siap menjadi jagoan matematika? Pilih kategori yang ingin kamu kuasai!</p>
       </div>
 
       <!-- Category Grid -->
-      <div class="row g-4 mb-5">
+      <div class="row g-2 mb-2 mb-md-3 flex-grow-1">
         <!-- Penjumlahan -->
-        <div class="col-12 col-md-6 d-flex">
-          <button id="btn-penjumlahan" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary); border-bottom-color: var(--primary);">
-            <div class="d-flex justify-content-between align-items-start">
-              <div class="p-3 rounded-2" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary-light);">
-                <span class="material-symbols-outlined icon-xl">add_circle</span>
-              </div>
+        <div class="col-6 col-md-6 d-flex">
+          <button id="btn-penjumlahan" class="w-100 text-start bg-surface-container-lowest p-3 rounded-3 card-3d border border-2 category-card compact-card d-flex flex-column" style="border-color: var(--primary);">
+            <div class="p-2 rounded-2 icon-box" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary-light); width: fit-content;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">add_circle</span>
             </div>
             <div class="mt-4">
-              <h3 class="headline-lg text-primary mb-2">Penjumlahan</h3>
-              <p class="body-md text-on-surface-variant">Gabungkan angka-angka dan temukan hasil yang luar biasa!</p>
+              <h3 class="headline-md text-primary mb-1">Penjumlahan</h3>
+              <p class="body-sm text-on-surface-variant">Gabungkan angka-angka!</p>
             </div>
           </button>
         </div>
 
         <!-- Pengurangan -->
-        <div class="col-12 col-md-6 d-flex">
-          <button id="btn-pengurangan" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--error); border-bottom-color: var(--error);">
-            <div class="d-flex justify-content-between align-items-start">
-              <div class="p-3 rounded-2" style="background-color: rgba(186, 26, 26, 0.2); color: var(--error);">
-                <span class="material-symbols-outlined icon-xl">do_not_disturb_on</span>
-              </div>
+        <div class="col-6 col-md-6 d-flex">
+          <button id="btn-pengurangan" class="w-100 text-start bg-surface-container-lowest p-3 rounded-3 card-3d border border-2 category-card compact-card d-flex flex-column" style="border-color: var(--error);">
+            <div class="p-2 rounded-2 icon-box" style="background-color: rgba(186, 26, 26, 0.2); color: var(--error); width: fit-content;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">do_not_disturb_on</span>
             </div>
             <div class="mt-4">
-              <h3 class="headline-lg text-error mb-2">Pengurangan</h3>
-              <p class="body-md text-on-surface-variant">Berapa sisanya? Pecahkan misteri angka yang hilang!</p>
+              <h3 class="headline-md text-error mb-1">Pengurangan</h3>
+              <p class="body-sm text-on-surface-variant">Pecahkan misteri angka!</p>
             </div>
           </button>
         </div>
 
         <!-- Perkalian -->
-        <div class="col-12 col-md-4 d-flex">
-          <button id="btn-perkalian" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--secondary); border-bottom-color: var(--secondary);">
-            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(120, 90, 0, 0.2); color: var(--secondary); width: fit-content;">
-              <span class="material-symbols-outlined icon-lg">close</span>
+        <div class="col-4 col-md-4 d-flex">
+          <button id="btn-perkalian" class="w-100 text-start bg-surface-container-lowest p-3 rounded-3 card-3d border border-2 category-card compact-card d-flex flex-column" style="border-color: var(--secondary);">
+            <div class="p-2 rounded-2 icon-box" style="background-color: rgba(120, 90, 0, 0.2); color: var(--secondary); width: fit-content;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
             </div>
-            <div>
-              <h3 class="headline-md text-secondary mb-2">Perkalian</h3>
-              <p class="label-lg text-on-surface-variant">Lipat gandakan kekuatan angkamu!</p>
+            <div class="mt-4">
+              <h3 class="headline-md text-secondary mb-1">Perkalian</h3>
+              <p class="body-sm text-on-surface-variant">Lipat gandakan!</p>
             </div>
           </button>
         </div>
 
         <!-- Pembagian -->
-        <div class="col-12 col-md-4 d-flex">
-          <button id="btn-pembagian" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--tertiary); border-bottom-color: var(--tertiary);">
-            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(0, 105, 77, 0.1); color: var(--tertiary); width: fit-content;">
-              <span class="material-symbols-outlined icon-lg">percent</span>
+        <div class="col-4 col-md-4 d-flex">
+          <button id="btn-pembagian" class="w-100 text-start bg-surface-container-lowest p-3 rounded-3 card-3d border border-2 category-card compact-card d-flex flex-column" style="border-color: var(--tertiary);">
+            <div class="p-2 rounded-2 icon-box" style="background-color: rgba(0, 105, 77, 0.1); color: var(--tertiary); width: fit-content;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">percent</span>
             </div>
-            <div>
-              <h3 class="headline-md text-tertiary mb-2">Pembagian</h3>
-              <p class="label-lg text-on-surface-variant">Bagi rata tantangan ini dengan ceria!</p>
+            <div class="mt-4">
+              <h3 class="headline-md text-tertiary mb-1">Pembagian</h3>
+              <p class="body-sm text-on-surface-variant">Bagi rata!</p>
             </div>
           </button>
         </div>
 
         <!-- Campuran -->
-        <div class="col-12 col-md-4 d-flex">
-          <button id="btn-campuran" class="w-100 text-start bg-surface-container-lowest p-4 rounded-3 card-3d border border-2 bouncy-button d-flex flex-column justify-content-between" style="border-color: var(--primary); border-bottom-color: var(--primary);">
-            <div class="p-3 rounded-2 mb-4" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary); width: fit-content;">
-              <span class="material-symbols-outlined icon-lg">extension</span>
+        <div class="col-4 col-md-4 d-flex">
+          <button id="btn-campuran" class="w-100 text-start bg-surface-container-lowest p-3 rounded-3 card-3d border border-2 category-card compact-card d-flex flex-column" style="border-color: var(--primary);">
+            <div class="p-2 rounded-2 icon-box" style="background-color: rgba(20, 112, 232, 0.1); color: var(--primary); width: fit-content;">
+              <span class="material-symbols-outlined" style="font-size: 24px;">extension</span>
             </div>
-            <div>
-              <h3 class="headline-md text-primary mb-2">Campuran</h3>
-              <p class="label-lg text-on-surface-variant">Uji kemampuanmu dengan semua operasi!</p>
+            <div class="mt-4">
+              <h3 class="headline-md text-primary mb-1">Campuran</h3>
+              <p class="body-sm text-on-surface-variant">Semua operasi!</p>
             </div>
           </button>
         </div>
       </div>
 
-      <!-- Decorative Progress Section (DENGAN ID BARU) -->
-      <div class="bg-surface-container-low rounded-4 p-4 border position-relative overflow-hidden" style="border-color: rgba(114, 119, 133, 0.3);">
-        <div class="position-relative d-flex flex-column flex-md-row align-items-center justify-content-between gap-4" style="z-index: 2;">
-          <div>
-            <h2 class="headline-md text-on-surface mb-2">Progress Belajarmu</h2>
-            <p id="teks-tantangan" class="body-md text-on-surface-variant">Kamu belum menyelesaikan tantangan minggu ini.</p>
+      <!-- Progress Section -->
+      <div class="bg-surface-container-low rounded-3 p-3 border position-relative overflow-hidden progress-section" style="border-color: rgba(114, 119, 133, 0.3);">
+        <div class="position-relative d-flex flex-column flex-md-row align-items-center justify-content-between gap-2" style="z-index: 2;">
+          <div class="text-center text-md-start">
+            <h2 class="text-on-surface mb-1" style="font-size: 1rem; font-weight: 600;">Progress Belajarmu</h2>
+            <p id="teks-tantangan" class="text-on-surface-variant mb-0" style="font-size: 0.85rem;">Kamu belum menyelesaikan tantangan minggu ini.</p>
           </div>
-<div class="w-100 w-md-50">
-            <div class="d-flex justify-content-between mb-2">
-              <span class="label-lg text-primary">Target Mingguan</span>
-              <span id="teks-persentase" class="label-lg text-primary">0%</span>
+          <div class="w-100" style="max-width: 300px;">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-primary" style="font-size: 0.8rem; font-weight: 600;">Target Mingguan</span>
+              <span id="teks-persentase" class="text-primary" style="font-size: 0.8rem; font-weight: 600;">0%</span>
             </div>
-            
-            <!-- PROGRESS BAR YANG DIPERBAIKI -->
-            <div class="progress" style="height: 24px; border-radius: 50px; background-color: var(--surface-container-highest);">
+            <div class="progress" style="height: 20px; border-radius: 50px; background-color: var(--surface-container-highest);">
               <div id="bar-progress" class="progress-bar bg-success position-relative" style="width: 0%; transition: width 0.8s ease-in-out; border-radius: 50px;">
-                <span class="material-symbols-outlined position-absolute" style="right: 8px; top: 50%; transform: translateY(-50%); font-size: 16px; color: white;">stars</span>
+                <span class="material-symbols-outlined position-absolute" style="right: 6px; top: 50%; transform: translateY(-50%); font-size: 14px; color: white;">stars</span>
               </div>
             </div>
-            
-          </div>
           </div>
         </div>
-        
-        <div class="position-absolute top-0 end-0 pe-none" style="z-index: 0; opacity: 0.05;">
-          <span class="material-symbols-outlined" style="font-size: 200px;">calculate</span>
+        <div class="position-absolute top-0 end-0 pe-none d-none d-md-block" style="z-index: 0; opacity: 0.05;">
+          <span class="material-symbols-outlined" style="font-size: 120px;">calculate</span>
         </div>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-surface-container-low border-top footer mt-auto">
-    <div class="text-center py-3 px-3">
-      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+  <footer class="bg-surface-container-low border-top footer">
+    <div class="text-center py-2 px-3">
+      <p class="text-on-surface-variant mb-0" style="font-size: 0.8rem;">© 2026 Jagoan Math</p>
     </div>
   </footer>
 

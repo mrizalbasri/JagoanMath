@@ -6,14 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Set UI Header
     document.getElementById("nama-profil").textContent = namaPemain;
-    document.getElementById("status-level").textContent = `Level ${level.toUpperCase()}`;
+    const statusLevel = document.getElementById("status-level");
+    if (statusLevel) statusLevel.textContent = `Level ${level.toUpperCase()}`;
     document.getElementById("label-kategori").textContent = kategori.toUpperCase();
 
     let soalSekarang = 1;
     const totalSoal = 10;
     let skor = 0;
     let jawabanBenarAngka = 0;
-    let waktuTersisa = 30; // 30 detik per soal
+    let waktuTersisa = 30;
     let timerInterval;
     let sudahMenjawab = false;
 
@@ -21,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const teksNomorSoal = document.getElementById("teks-nomor-soal");
     const progressBar = document.getElementById("progress-bar-soal");
     const teksTimer = document.getElementById("teks-timer");
-    const barTimer = document.getElementById("bar-timer");
-    const btnLanjut = document.getElementById("btn-lanjut");
 
     const tombolOpsi = [
         document.getElementById("btn-opsi-0"),
@@ -44,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return Math.floor(Math.random() * max) + 1;
     }
 
-    // MEMBUAT SOAL ---
     function buatSoal() {
         let angka1 = dapatkanAngkaAcak();
         let angka2 = dapatkanAngkaAcak();
@@ -77,17 +75,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 operatorStr = "x";
                 break;
             case "pembagian":
-                jawabanBenarAngka = angka1; 
-                angka1 = angka1 * angka2; 
+                jawabanBenarAngka = angka1;
+                angka1 = angka1 * angka2;
                 operatorStr = ":";
                 break;
         }
 
-        teksPertanyaan.innerHTML = `Berapa hasil dari <span class="text-primary fw-bold">${angka1} ${operatorStr} ${angka2}</span>?`;
+        teksPertanyaan.innerHTML = `<span class="text-primary">${angka1} ${operatorStr} ${angka2}</span> = ?`;
         buatPilihanJawaban(jawabanBenarAngka);
     }
 
-    // Buat pilgan
     function buatPilihanJawaban(jawabanBenar) {
         let opsi = [jawabanBenar];
 
@@ -103,47 +100,40 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 0; i < 4; i++) {
             teksOpsi[i].textContent = opsi[i];
             tombolOpsi[i].classList.remove("jawaban-benar", "jawaban-salah");
-            tombolOpsi[i].disabled = false; 
-            
+            tombolOpsi[i].disabled = false;
+
             tombolOpsi[i].onclick = function() {
                 cekJawaban(i, opsi[i] === jawabanBenar);
             };
         }
     }
 
-    // timer
     function mulaiTimer() {
         waktuTersisa = 30;
-        barTimer.style.width = "100%";
         teksTimer.textContent = "00:30";
         clearInterval(timerInterval);
 
         timerInterval = setInterval(() => {
             waktuTersisa--;
-            let persen = (waktuTersisa / 30) * 100;
-            barTimer.style.width = `${persen}%`;
-            
             let detikStr = waktuTersisa < 10 ? "0" + waktuTersisa : waktuTersisa;
             teksTimer.textContent = `00:${detikStr}`;
 
             if (waktuTersisa <= 0) {
                 clearInterval(timerInterval);
-                cekJawaban(-1, false); 
+                cekJawaban(-1, false);
             }
         }, 1000);
     }
 
-    // acak jawaban
     function cekJawaban(indexDipilih, isBenar) {
         if (sudahMenjawab) return;
         sudahMenjawab = true;
-        clearInterval(timerInterval); 
+        clearInterval(timerInterval);
 
         tombolOpsi.forEach(btn => btn.disabled = true);
-        btnLanjut.disabled = false; 
 
         if (isBenar) {
-            skor += 10; 
+            skor += 10;
             tombolOpsi[indexDipilih].classList.add("jawaban-benar");
         } else {
             if(indexDipilih !== -1) {
@@ -155,29 +145,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         }
-    }
-// next soal
-    btnLanjut.addEventListener("click", function() {
-        if (soalSekarang < totalSoal) {
-            soalSekarang++;
-            mulaiPertanyaanBaru();
-        } else {
-            // Simpan skor
-            localStorage.setItem("skorAkhir", skor);
-            
-            let totalSelesai = parseInt(localStorage.getItem("totalTantangan")) || 0;
-            localStorage.setItem("totalTantangan", totalSelesai + 1);
 
-            window.location.href = "results.html"; 
-        }
-    });
+        // Auto lanjut ke soal berikutnya setelah 1.5 detik
+        setTimeout(() => {
+            if (soalSekarang < totalSoal) {
+                soalSekarang++;
+                mulaiPertanyaanBaru();
+            } else {
+                localStorage.setItem("skorAkhir", skor);
+                let totalSelesai = parseInt(localStorage.getItem("totalTantangan")) || 0;
+                localStorage.setItem("totalTantangan", totalSelesai + 1);
+                window.location.href = "results.html";
+            }
+        }, 1500);
+    }
 
     function mulaiPertanyaanBaru() {
         sudahMenjawab = false;
-        btnLanjut.disabled = true;
-        teksNomorSoal.textContent = `Soal ${soalSekarang} dari ${totalSoal}`;
+        teksNomorSoal.textContent = `Soal ${soalSekarang}/${totalSoal}`;
         progressBar.style.width = `${(soalSekarang / totalSoal) * 100}%`;
-        
+
         buatSoal();
         mulaiTimer();
     }

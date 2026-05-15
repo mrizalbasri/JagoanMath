@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    // Set nama profil
+    const namaPemain = localStorage.getItem("namaPemainMath") || "Jagoan";
+    const namaProfil = document.getElementById("nama-profil");
+    if (namaProfil) namaProfil.textContent = namaPemain;
+
     const btnMudah = document.getElementById("btn-mudah");
     const btnSedang = document.getElementById("btn-sedang");
     const btnSulit = document.getElementById("btn-sulit");

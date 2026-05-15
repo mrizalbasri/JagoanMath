@@ -1,25 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     const namaPemain = localStorage.getItem("namaPemainMath") || "Jagoan";
-    const level = localStorage.getItem("levelPilihan") || "mudah";
+    const skorAkhir = parseInt(localStorage.getItem("skorAkhir")) || 0;
 
-    const skorAkhir = parseInt(localStorage.getItem("skorAkhir")) || 0; 
-    
-    document.getElementById("header-nama-profil").textContent = namaPemain;
-    document.getElementById("header-status-level").textContent = `Level ${level.toUpperCase()}`;
-  
+    // Set nama profil di header dan summary
+    document.getElementById("nama-profil").textContent = namaPemain;
     document.getElementById("summary-nama").textContent = namaPemain;
-    document.getElementById("skor-akhir").textContent = `${skorAkhir} / 100`;
 
+    // Set skor
+    document.getElementById("skor-akhir").textContent = skorAkhir;
+
+    // Set jumlah benar
     const jumlahBenar = skorAkhir / 10;
-    document.getElementById("summary-benar").textContent = `${jumlahBenar} / 10`;
+    document.getElementById("summary-benar").textContent = `${jumlahBenar}/10`;
 
-    // tanggal
+    // Set tanggal (format singkat)
     const tanggalSekarang = new Date();
-    const formatTanggal = { day: 'numeric', month: 'long', year: 'numeric' };
-    const teksTanggalHariIni = tanggalSekarang.toLocaleDateString('id-ID', formatTanggal);
-    
-    document.getElementById("summary-tanggal").textContent = teksTanggalHariIni;
+    const formatTanggal = { day: 'numeric', month: 'short' };
+    const teksTanggal = tanggalSekarang.toLocaleDateString('id-ID', formatTanggal);
+    document.getElementById("summary-tanggal").textContent = teksTanggal;
 
     const btnMainLagi = document.getElementById("btn-main-lagi");
     const btnKeluar = document.getElementById("btn-keluar");

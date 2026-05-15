@@ -16,11 +16,92 @@
   <link href="css/bootstrap-custom.css" rel="stylesheet">
 
   <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
     .difficulty-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .difficulty-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-4px);
+    }
+    /* Compact layout for single page */
+    @media (min-width: 768px) {
+      .compact-header {
+        margin-bottom: 1rem !important;
+      }
+      .compact-icon {
+        width: 56px !important;
+        height: 56px !important;
+        margin-bottom: 0.75rem !important;
+      }
+      .compact-icon .material-symbols-outlined {
+        font-size: 28px !important;
+      }
+      .compact-card {
+        min-height: auto !important;
+        padding: 1rem !important;
+      }
+      .compact-card-icon {
+        width: 64px !important;
+        height: 64px !important;
+        margin-bottom: 0.75rem !important;
+      }
+      .compact-card-icon .material-symbols-outlined {
+        font-size: 32px !important;
+      }
+      .compact-card h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      .compact-card p {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      .compact-card .pill-badge {
+        padding: 0.25rem 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      .compact-card .card-btn {
+        padding: 0.5rem !important;
+      }
+      .featured-card {
+        transform: scale(1.02) !important;
+      }
+    }
+    /* Mobile: stack vertically with smaller cards */
+    @media (max-width: 767px) {
+      .difficulty-card {
+        min-height: auto !important;
+        padding: 1rem !important;
+      }
+      .difficulty-card .card-icon {
+        width: 56px !important;
+        height: 56px !important;
+        margin-bottom: 0.5rem !important;
+      }
+      .difficulty-card .card-icon .material-symbols-outlined {
+        font-size: 28px !important;
+      }
+      .difficulty-card h2 {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      .difficulty-card p {
+        display: none;
+      }
+      .difficulty-card .card-btn {
+        padding: 0.5rem !important;
+        margin-top: 0.5rem !important;
+      }
+      .mobile-header-icon {
+        width: 48px !important;
+        height: 48px !important;
+      }
+      .mobile-header-icon .material-symbols-outlined {
+        font-size: 24px !important;
+      }
     }
   </style>
 </head>
@@ -28,113 +109,111 @@
 
   <!-- TopAppBar -->
   <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
-    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
+    <nav class="navbar navbar-expand-md px-3 px-md-5 py-2">
       <div class="container-fluid">
         <!-- Brand Logo Only -->
-        <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+        <div class="d-flex align-items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-size: 24px;">calculate</span>
+          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 20px;">Jagoan Math</h1>
+        </div>
 
         <!-- Right Side Items -->
-        <div class="d-flex align-items-center gap-3 ms-auto">
-          <button class="btn btn-link text-on-surface-variant p-0" type="button" title="Settings">
-            <span class="material-symbols-outlined">settings</span>
-          </button>
+        <div class="d-flex align-items-center gap-2 ms-auto">
+          <span id="nama-profil" class="d-none d-sm-inline text-primary fw-bold" style="font-size: 14px;">Student</span>
+          <div class="rounded-circle overflow-hidden border border-2" style="width: 36px; height: 36px; border-color: var(--primary-container);">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Avatar" class="w-100 h-100 object-fit-cover">
+          </div>
         </div>
       </div>
     </nav>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow-1 d-flex flex-column align-items-center justify-content-center px-3 py-5">
+  <main class="flex-grow-1 d-flex flex-column align-items-center justify-content-center px-3 py-2 py-md-3">
     <div class="container-max">
       <!-- Header Section -->
-      <div class="w-100 mb-5">
+      <div class="w-100 mb-3 compact-header">
         <!-- Back Button (Responsive) -->
-        <!-- ID btn-back DITAMBAHKAN DI SINI -->
-        <button id="btn-back" class="btn d-flex d-md-none align-items-center justify-content-center chunky-button-secondary mb-4" style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--surface-container); border: none;">
+        <button id="btn-back" class="btn d-flex d-md-none align-items-center justify-content-center chunky-button-secondary mb-2" style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--surface-container); border: none;">
           <span class="material-symbols-outlined">arrow_back_ios_new</span>
         </button>
 
         <!-- Content Section -->
         <div class="w-100 d-flex flex-column align-items-center">
           <!-- Icon -->
-          <div class="rounded-circle bg-primary-light text-on-primary-container d-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
+          <div class="rounded-circle bg-primary-light text-on-primary-container d-flex align-items-center justify-content-center mb-2 compact-icon mobile-header-icon" style="width: 80px; height: 80px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
             <span class="material-symbols-outlined" style="font-size: 36px;">calculate</span>
           </div>
 
           <!-- Title -->
-          <h1 class="headline-lg-mobile headline-xl text-primary text-center mb-2">Pilih Level Kesulitan</h1>
-          <p class="body-lg text-on-surface-variant text-center" style="max-width: 600px;">Seberapa menantang soal yang ingin kamu kerjakan hari ini?</p>
+          <h1 class="headline-lg-mobile headline-xl text-primary text-center mb-1" style="font-size: clamp(1.25rem, 4vw, 1.75rem);">Pilih Level Kesulitan</h1>
+          <p class="body-md text-on-surface-variant text-center d-none d-md-block" style="max-width: 500px;">Seberapa menantang soal yang ingin kamu kerjakan?</p>
         </div>
       </div>
 
       <!-- Difficulty Selection Cards -->
-      <div class="row g-4 w-100 justify-content-center" style="max-width: 900px; margin: 0 auto;">
-        
+      <div class="row g-2 g-md-3 w-100 justify-content-center" style="max-width: 900px; margin: 0 auto;">
+
         <!-- Easy Card -->
         <div class="col-12 col-md-4">
-          <!-- ID btn-mudah DITAMBAHKAN DI SINI -->
-          <button id="btn-mudah" class="btn btn-light w-100 h-100 p-4 rounded-4 card-shadow difficulty-card border border-2 text-start position-relative overflow-hidden d-flex flex-column align-items-center" style="border-color: var(--surface-container-high); min-height: 400px;">
-            <div class="position-absolute inset-0 opacity-0" style="background-color: var(--tertiary-container); transition: opacity 0.3s;"></div>
-            <div class="rounded-circle bg-tertiary-fixed text-on-tertiary-fixed d-flex align-items-center justify-content-center mb-4" style="width: 96px; height: 96px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
+          <button id="btn-mudah" class="btn btn-light w-100 h-100 p-3 rounded-4 card-shadow difficulty-card compact-card border border-2 text-start position-relative overflow-hidden d-flex flex-column align-items-center" style="border-color: var(--surface-container-high);">
+            <div class="rounded-circle bg-tertiary-fixed text-on-tertiary-fixed d-flex align-items-center justify-content-center mb-2 compact-card-icon card-icon" style="width: 96px; height: 96px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
               <span class="material-symbols-outlined" style="font-size: 40px;">emoji_nature</span>
             </div>
-            <h2 class="headline-lg text-tertiary mb-3 text-center w-100">Mudah</h2>
-            <div class="bg-surface-container px-3 py-2 rounded-pill mb-3">
-              <span class="label-lg text-on-surface-variant">Numbers 1-10</span>
+            <h2 class="headline-md text-tertiary mb-2 text-center w-100">Mudah</h2>
+            <div class="bg-surface-container px-2 py-1 rounded-pill mb-2 pill-badge">
+              <span class="label-md text-on-surface-variant">Numbers 1-10</span>
             </div>
-            <p class="body-md text-on-surface-variant text-center">Cocok untuk pemanasan! Mari mulai dengan angka-angka kecil dan bersenang-senang.</p>
-            <div class="mt-auto w-100 py-3 rounded-2 bg-tertiary text-on-tertiary label-lg text-center chunky-button-tertiary">
-              Mulai Mudah
+            <p class="body-sm text-on-surface-variant text-center mb-2">Cocok untuk pemanasan dengan angka-angka kecil.</p>
+            <div class="mt-auto w-100 py-2 rounded-2 bg-tertiary text-on-tertiary label-lg text-center chunky-button-tertiary card-btn">
+              Mulai
             </div>
           </button>
         </div>
 
         <!-- Medium Card (Featured) -->
         <div class="col-12 col-md-4">
-          <!-- ID btn-sedang DITAMBAHKAN DI SINI -->
-          <button id="btn-sedang" class="btn btn-light w-100 h-100 p-4 rounded-4 card-shadow difficulty-card border border-2 text-start position-relative overflow-hidden d-flex flex-column align-items-center" style="border-color: var(--surface-container-high); border-top: 3px solid var(--primary); min-height: 400px; transform: scale(1.05); box-shadow: 0 8px 24px rgba(0, 88, 189, 0.1);">
+          <button id="btn-sedang" class="btn btn-light w-100 h-100 p-3 rounded-4 card-shadow difficulty-card compact-card featured-card border border-2 text-start position-relative overflow-hidden d-flex flex-column align-items-center" style="border-color: var(--surface-container-high); border-top: 3px solid var(--primary); box-shadow: 0 4px 16px rgba(0, 88, 189, 0.1);">
             <div class="position-absolute top-0 start-0 end-0" style="height: 3px; background-color: var(--primary);"></div>
-            <div class="rounded-circle bg-primary-fixed text-on-primary-fixed d-flex align-items-center justify-content-center mb-4" style="width: 96px; height: 96px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
+            <div class="rounded-circle bg-primary-fixed text-on-primary-fixed d-flex align-items-center justify-content-center mb-2 compact-card-icon card-icon" style="width: 96px; height: 96px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
               <span class="material-symbols-outlined" style="font-size: 40px;">rocket_launch</span>
             </div>
-            <h2 class="headline-lg text-primary mb-3 text-center w-100">Sedang</h2>
-            <div class="bg-surface-container px-3 py-2 rounded-pill mb-3">
-              <span class="label-lg text-on-surface-variant">Numbers 1-50</span>
+            <h2 class="headline-md text-primary mb-2 text-center w-100">Sedang</h2>
+            <div class="bg-surface-container px-2 py-1 rounded-pill mb-2 pill-badge">
+              <span class="label-md text-on-surface-variant">Numbers 1-50</span>
             </div>
-            <p class="body-md text-on-surface-variant text-center">Siap untuk tantangan? Uji kemampuanmu dengan angka yang lebih besar.</p>
-            <div class="mt-auto w-100 py-3 rounded-2 bg-primary text-on-primary label-lg text-center chunky-button-primary">
-              Mulai Sedang
+            <p class="body-sm text-on-surface-variant text-center mb-2">Uji kemampuanmu dengan angka lebih besar.</p>
+            <div class="mt-auto w-100 py-2 rounded-2 bg-primary text-on-primary label-lg text-center chunky-button-primary card-btn">
+              Mulai
             </div>
           </button>
         </div>
 
         <!-- Hard Card -->
         <div class="col-12 col-md-4">
-          <!-- ID btn-sulit DITAMBAHKAN DI SINI -->
-          <button id="btn-sulit" class="btn btn-light w-100 h-100 p-4 rounded-4 card-shadow difficulty-card border border-2 text-start position-relative overflow-hidden d-flex flex-column align-items-center" style="border-color: var(--surface-container-high); min-height: 400px;">
-            <div class="position-absolute inset-0 opacity-0" style="background-color: var(--secondary-container); transition: opacity 0.3s;"></div>
-            <div class="rounded-circle bg-secondary-container text-on-secondary-container d-flex align-items-center justify-content-center mb-4" style="width: 96px; height: 96px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
+          <button id="btn-sulit" class="btn btn-light w-100 h-100 p-3 rounded-4 card-shadow difficulty-card compact-card border border-2 text-start position-relative overflow-hidden d-flex flex-column align-items-center" style="border-color: var(--surface-container-high);">
+            <div class="rounded-circle bg-secondary-container text-on-secondary-container d-flex align-items-center justify-content-center mb-2 compact-card-icon card-icon" style="width: 96px; height: 96px; box-shadow: 0 2px 8px rgba(0, 88, 189, 0.1);">
               <span class="material-symbols-outlined" style="font-size: 40px;">local_fire_department</span>
             </div>
-            <h2 class="headline-lg text-secondary mb-3 text-center w-100">Sulit</h2>
-            <div class="bg-surface-container px-3 py-2 rounded-pill mb-3">
-              <span class="label-lg text-on-surface-variant">Numbers 1-100</span>
+            <h2 class="headline-md text-secondary mb-2 text-center w-100">Sulit</h2>
+            <div class="bg-surface-container px-2 py-1 rounded-pill mb-2 pill-badge">
+              <span class="label-md text-on-surface-variant">Numbers 1-100</span>
             </div>
-            <p class="body-md text-on-surface-variant text-center">Hanya untuk para ahli! Taklukkan angka-angka besar dan jadilah juara.</p>
-            <div class="mt-auto w-100 py-3 rounded-2 bg-secondary text-on-secondary label-lg text-center chunky-button-secondary">
-              Mulai Sulit
+            <p class="body-sm text-on-surface-variant text-center mb-2">Taklukkan angka besar dan jadilah juara!</p>
+            <div class="mt-auto w-100 py-2 rounded-2 bg-secondary text-on-secondary label-lg text-center chunky-button-secondary card-btn">
+              Mulai
             </div>
           </button>
         </div>
-        
+
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-surface-container-low border-top footer mt-auto">
-    <div class="text-center py-3 px-3">
-      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+  <footer class="bg-surface-container-low border-top footer">
+    <div class="text-center py-2 px-3">
+      <p class="body-sm text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
     </div>
   </footer>
 

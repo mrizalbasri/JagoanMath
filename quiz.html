@@ -16,45 +16,73 @@
   <link href="css/bootstrap-custom.css" rel="stylesheet">
 
   <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
     .quiz-option {
       transition: all 0.2s ease;
     }
     .quiz-option:hover:not(:disabled) {
       background-color: rgba(0, 88, 189, 0.05);
+      transform: translateY(-2px);
     }
-    .timer-bar {
-      height: 12px;
-      border-radius: 50px;
-      background: linear-gradient(90deg, var(--error) 0%, var(--error) 100%);
-      transition: width 1s linear; /* Animasi diatur JS */
-    }
-    /* Tambahan class untuk jawaban benar/salah */
     .jawaban-benar { background-color: #d4edda !important; border-color: #28a745 !important; border-bottom-color: #28a745 !important; }
     .jawaban-salah { background-color: #f8d7da !important; border-color: #dc3545 !important; border-bottom-color: #dc3545 !important; }
+
+    /* Question display - besar dan jelas */
+    .question-display {
+      font-size: clamp(2.5rem, 10vw, 5rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    /* Option buttons - lebih besar */
+    .option-badge {
+      width: 48px;
+      height: 48px;
+      font-size: 18px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .quiz-option {
+      padding: 1rem 1.25rem;
+    }
+    .quiz-option .answer-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 767px) {
+      .option-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      .quiz-option {
+        padding: 0.75rem 1rem;
+      }
+      .quiz-option .answer-text {
+        font-size: 1.25rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-background text-on-surface d-flex flex-column min-vh-100">
 
-  <!-- TopAppBar -->
-  <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
-    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
+  <!-- TopAppBar - Compact -->
+  <header class="bg-surface shadow-sm" style="z-index: 1030;">
+    <nav class="navbar px-3 py-2">
       <div class="container-fluid">
-        <!-- Brand Logo Only -->
         <div class="d-flex align-items-center gap-2">
-          <span class="material-symbols-outlined text-primary" style="font-size: 28px;">school</span>
-          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+          <span class="material-symbols-outlined text-primary" style="font-size: 24px;">calculate</span>
+          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 18px;">Jagoan Math</h1>
         </div>
-
-        <!-- Right Side Items -->
-        <div class="d-flex align-items-center gap-3 ms-auto">
-          <div class="d-none d-sm-flex align-items-center flex-column text-end">
-            <!-- ID untuk Nama -->
-            <span id="nama-profil" class="label-lg text-primary small">Student Name</span>
-            <!-- ID untuk Level Status -->
-            <span id="status-level" class="small text-on-surface-variant">Level Explorer</span>
-          </div>
-          <div class="rounded-circle overflow-hidden border border-2" style="width: 40px; height: 40px; border-color: var(--primary-container);">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIlTLx0-CE9JgxFX_OtTTlsZCsQdjEwrJo6UZSzCA3fXsDLRqLRR7zLrSvT6vz0yoC1f9UAom4peAagueZ5XJ_wP27EJ2PDD3GDU4c_LjLtA8dmmWRWsClmoHi7wP78vRREPvTHEtGzSsNuz8ZVvdou-9vI7KOmScSbkAgYg1HpZcqAEeHhVMJqWBBcwS5LxHz-xpZT5wgOcqvwG57-0DnUMJ0jUVyEHYqhPDPF81O18o6ApHmTyjKkP5ubsFgtqCnEcqisxEgD9ma" alt="Student avatar" class="w-100 h-100 object-fit-cover">
+        <div class="d-flex align-items-center gap-2">
+          <span id="nama-profil" class="d-none d-sm-inline text-primary fw-bold" style="font-size: 14px;">Student</span>
+          <div class="rounded-circle overflow-hidden border border-2" style="width: 36px; height: 36px; border-color: var(--primary-container);">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Avatar" class="w-100 h-100 object-fit-cover">
           </div>
         </div>
       </div>
@@ -62,119 +90,83 @@
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow-1 pt-5 pb-3 px-3 margin-desktop">
-    <div class="container-max mx-auto">
-      <!-- Quiz Progress Header -->
-      <div class="row mb-4 align-items-end gx-4">
-        <div class="col-12 col-md-6">
-          <!-- ID untuk nomor soal -->
-          <h2 id="teks-nomor-soal" class="headline-lg-mobile headline-lg text-primary mb-2">Soal 1 dari 10</h2>
-          <div class="progress" style="height: 1.25rem; border-radius: 50px; border: 2px solid var(--surface-container-highest);">
-            <div id="progress-bar-soal" class="progress-bar" style="width: 10%; background: linear-gradient(90deg, var(--tertiary), var(--tertiary-fixed));">
-              <span class="material-symbols-outlined position-absolute end-2 top-50 translate-middle-y text-tertiary" style="font-size: 20px;">stars</span>
-            </div>
-          </div>
-        </div>
-        <!-- Countdown Timer -->
-        <div class="col-12 col-md-6 mt-3 mt-md-0">
-          <div class="bg-surface-container-low p-3 rounded-2 border border-1 text-center" style="border-color: rgba(0, 88, 189, 0.1);">
-            <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-              <span class="material-symbols-outlined text-error">timer</span>
-              <!-- ID untuk Teks Timer -->
-              <span id="teks-timer" class="headline-md text-on-surface">00:30</span>
-            </div>
-            <div class="progress" style="height: 8px; border-radius: 50px;">
-              <!-- ID untuk Bar Timer -->
-              <div id="bar-timer" class="progress-bar bg-danger timer-bar" style="width: 100%;"></div>
-            </div>
-          </div>
+  <main class="flex-grow-1 px-3 py-3 d-flex align-items-center">
+    <div class="container-max mx-auto w-100" style="max-width: 700px;">
+
+      <!-- Progress Row -->
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span id="teks-nomor-soal" class="fw-bold text-primary">Soal 1/10</span>
+        <div class="d-flex align-items-center gap-1 px-2 py-1 rounded-pill" style="background: var(--error-container);">
+          <span class="material-symbols-outlined text-error" style="font-size: 16px;">timer</span>
+          <span id="teks-timer" class="fw-bold text-error">00:30</span>
+          <div id="bar-timer" class="d-none"></div>
         </div>
       </div>
 
-      <!-- Central Question Card -->
-      <section class="mb-5">
-        <div class="bg-surface-container-lowest ambient-card rounded-4 p-5 border position-relative overflow-hidden" style="border-color: rgba(114, 119, 133, 0.3);">
-          <!-- Decorative elements -->
-          <div class="position-absolute" style="top: -40px; right: -40px; width: 128px; height: 128px; background-color: rgba(255, 209, 103, 0.2); border-radius: 50%; filter: blur(64px);"></div>
-          <div class="position-absolute" style="bottom: -40px; left: -40px; width: 160px; height: 160px; background-color: rgba(20, 112, 232, 0.1); border-radius: 50%; filter: blur(64px);"></div>
+      <!-- Progress Bar -->
+      <div class="progress mb-4" style="height: 8px; border-radius: 50px;">
+        <div id="progress-bar-soal" class="progress-bar" style="width: 10%; background: linear-gradient(90deg, var(--tertiary), var(--tertiary-fixed));"></div>
+      </div>
 
-          <!-- Content -->
-          <div class="text-center position-relative z-2">
-            <!-- ID untuk Label Kategori -->
-            <span id="label-kategori" class="badge bg-primary-fixed text-on-primary-fixed label-lg mb-4 d-inline-block">Kategori</span>
+      <!-- Question Card -->
+      <div class="question-card text-center position-relative overflow-hidden mb-4" style="background: linear-gradient(135deg, var(--primary-container) 0%, var(--surface-container-lowest) 50%, var(--tertiary-container) 100%); border-radius: 1.25rem; padding: 2rem 1.5rem; border: 2px solid var(--primary-fixed);">
+        <!-- Decorative -->
+        <div class="position-absolute" style="top: -15px; right: -15px; width: 50px; height: 50px; background: var(--tertiary-fixed); border-radius: 50%; opacity: 0.3;"></div>
+        <div class="position-absolute" style="bottom: -10px; left: -10px; width: 40px; height: 40px; background: var(--primary); border-radius: 50%; opacity: 0.15;"></div>
 
-            <!-- ID untuk Pertanyaan -->
-            <h3 id="teks-pertanyaan" class="headline-xl text-on-surface mb-4">
-              Mempersiapkan soal...
-            </h3>
-
-            <div class="d-flex justify-content-center">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0bAovD4622ihoqhLW1Rwy0Vtw-OiLBN8pTFXpyULLgGSNZjUadmB3xENHn0-KbsCTULRDb883kvvw4biuy2BqXJIYdoitQykp_lWtCY0difGyp4nrpCmXPOyAu-luOGsfFcoUi26xW8dvkhrxuEvbFg0GlH3XAsqRzpM1OrQjF2E1pZnTK4zbU98dIxKNfMFiq6ZvDXoRk0zJPLm83SgF-eg-viHt40OFUQ2J0ffFg5ovGcWVLwBTvM3Qar5Ja9EBlI0I1YAlfw7F" alt="Math illustration" class="rounded-3" style="width: 192px; height: 192px; object-fit: contain;">
-            </div>
-          </div>
+        <!-- Category Badge -->
+        <div class="d-inline-flex align-items-center gap-1 mb-3 px-3 py-1 rounded-pill" style="background: var(--primary); color: var(--on-primary); font-size: 0.8rem;">
+          <span class="material-symbols-outlined" style="font-size: 16px;">category</span>
+          <span id="label-kategori">Kategori</span>
+          <span id="status-level" class="d-none"></span>
         </div>
-      </section>
 
-      <!-- Multiple Choice Buttons -->
-      <section class="row g-3 mb-5" id="wadah-opsi">
-        <!-- Opsi A -->
-        <div class="col-12 col-md-6">
-          <button id="btn-opsi-0" class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4 chunky-button-primary" style="border-color: var(--primary-container); justify-content: flex-start;">
-            <div class="bg-primary text-on-primary rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">A</div>
-            <span id="teks-opsi-0" class="headline-md text-on-surface flex-grow-1 text-start">...</span>
+        <!-- Question -->
+        <h3 id="teks-pertanyaan" class="question-display text-on-surface mb-0">
+          ? + ? = ?
+        </h3>
+      </div>
+
+      <!-- Answer Options - 2x2 Grid -->
+      <div class="row g-3" id="wadah-opsi">
+        <div class="col-6">
+          <button id="btn-opsi-0" class="btn w-100 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-3 chunky-button-primary" style="border-color: var(--primary-container);">
+            <div class="bg-primary text-on-primary rounded-2 d-flex align-items-center justify-content-center option-badge">A</div>
+            <span id="teks-opsi-0" class="answer-text text-on-surface">...</span>
           </button>
         </div>
-
-        <!-- Opsi B -->
-        <div class="col-12 col-md-6">
-          <button id="btn-opsi-1" class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4 chunky-button-secondary" style="border-color: var(--secondary); justify-content: flex-start;">
-            <div class="bg-secondary text-on-secondary rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">B</div>
-            <span id="teks-opsi-1" class="headline-md text-on-surface flex-grow-1 text-start">...</span>
+        <div class="col-6">
+          <button id="btn-opsi-1" class="btn w-100 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-3 chunky-button-secondary" style="border-color: var(--secondary);">
+            <div class="bg-secondary text-on-secondary rounded-2 d-flex align-items-center justify-content-center option-badge">B</div>
+            <span id="teks-opsi-1" class="answer-text text-on-surface">...</span>
           </button>
         </div>
-
-        <!-- Opsi C -->
-        <div class="col-12 col-md-6">
-          <button id="btn-opsi-2" class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4 chunky-button-tertiary" style="border-color: var(--tertiary); justify-content: flex-start;">
-            <div class="bg-tertiary text-on-tertiary rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">C</div>
-            <span id="teks-opsi-2" class="headline-md text-on-surface flex-grow-1 text-start">...</span>
+        <div class="col-6">
+          <button id="btn-opsi-2" class="btn w-100 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-3 chunky-button-tertiary" style="border-color: var(--tertiary);">
+            <div class="bg-tertiary text-on-tertiary rounded-2 d-flex align-items-center justify-content-center option-badge">C</div>
+            <span id="teks-opsi-2" class="answer-text text-on-surface">...</span>
           </button>
         </div>
-
-        <!-- Opsi D -->
-<div class="col-12 col-md-6">
-          <button id="btn-opsi-3" class="btn w-100 p-3 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-4" style="border-bottom: 4px solid var(--error) !important; justify-content: flex-start;">
-            <div class="bg-error text-on-error rounded-2 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px; flex-shrink: 0; font-size: 20px; font-weight: bold;">D</div>
-            <span id="teks-opsi-3" class="headline-md text-on-surface flex-grow-1 text-start">...</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- Action Bar -->
-      <div class="row align-items-center g-3 mb-4">
-        <div class="col-12 col-md-6">
-          <!-- Tombol petunjuk dinonaktifkan sementara agar fokus ke logika utama -->
-        </div>
-        <div class="col-12 col-md-6 d-flex justify-content-end gap-3">
-          <button id="btn-lanjut" class="btn px-5 py-2 rounded-pill bg-primary-light text-on-primary-container headline-md chunky-button-primary d-flex align-items-center gap-2" disabled>
-            Lanjut
-            <span class="material-symbols-outlined">arrow_forward</span>
+        <div class="col-6">
+          <button id="btn-opsi-3" class="btn w-100 rounded-3 border border-2 bg-surface-container-lowest quiz-option d-flex align-items-center gap-3" style="border-bottom: 4px solid var(--error) !important;">
+            <div class="bg-error text-on-error rounded-2 d-flex align-items-center justify-content-center option-badge">D</div>
+            <span id="teks-opsi-3" class="answer-text text-on-surface">...</span>
           </button>
         </div>
       </div>
+
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-surface-container-low border-top footer mt-auto">
-    <div class="text-center py-3 px-3">
-      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+  <!-- Footer - Minimal -->
+  <footer class="bg-surface-container-low border-top">
+    <div class="text-center py-1 px-3">
+      <p class="text-on-surface-variant mb-0" style="font-size: 0.7rem;">© 2026 Jagoan Math</p>
     </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- HUBUNGAN KE JAVASCRIPT -->
   <script src="js/quiz.js"></script>
 </body>
 </html>
