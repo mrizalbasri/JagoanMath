@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JagonMatika - Fun Math for Kids</title>
+  <title>Jagoan Math - Belajar Matematika Seru</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,29 +14,131 @@
 
   <!-- Custom CSS -->
   <link href="css/bootstrap-custom.css" rel="stylesheet">
+
+  <style>
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1;
+    }
+
+    .hero-blob-1 {
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: var(--secondary-fixed);
+      opacity: 0.2;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      filter: blur(60px);
+      z-index: -1;
+    }
+    .hero-blob-2 {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 380px;
+      height: 380px;
+      background: var(--primary-fixed);
+      opacity: 0.2;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      filter: blur(60px);
+      z-index: -1;
+    }
+
+    .hero-img {
+      transition: transform 0.5s ease;
+      animation: hero-float 4s ease-in-out infinite;
+    }
+    .hero-img:hover {
+      transform: rotate(0deg) scale(1.02) !important;
+      animation-play-state: paused;
+    }
+    @keyframes hero-float {
+      0%, 100% { transform: rotate(2deg) translateY(0); }
+      50% { transform: rotate(2deg) translateY(-10px); }
+    }
+
+    .bento-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0, 88, 189, 0.12);
+    }
+
+    .bento-wide {
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .bento-wide:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 88, 189, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .bento-card {
+        min-height: 200px;
+      }
+      .bento-wide {
+        min-height: 120px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+
+    .badge-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .badge-float-2 {
+      animation: float2 3.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-6px) rotate(1deg); }
+    }
+  </style>
 </head>
 <body class="bg-surface text-on-surface d-flex flex-column min-vh-100">
 
   <!-- TopAppBar -->
-  <header class="bg-surface shadow-sm sticky-top" style="top: 0; z-index: 1030;">
-    <nav class="navbar navbar-expand-md px-3 px-md-5 py-3">
-      <div class="container-fluid">
-        <!-- Brand Logo Only -->
+  <header class="bg-surface shadow-sm position-fixed top-0 start-0 end-0" style="z-index: 1030;">
+    <nav class="navbar px-3 px-md-4 py-3">
+      <div class="container-fluid" style="max-width: 1140px; margin: 0 auto;">
         <div class="d-flex align-items-center gap-2">
-          <span class="material-symbols-outlined text-primary" style="font-size: 28px;">calculate</span>
-          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px;">Jagoan Math</h1>
+          <span class="material-symbols-outlined filled text-primary" style="font-size: 28px;">calculate</span>
+          <h1 class="navbar-brand mb-0 fw-bold text-primary" style="font-size: 24px; font-family: 'Quicksand', sans-serif;">Jagoan Math</h1>
         </div>
-
-        <!-- Right Side Items -->
         <div class="d-flex align-items-center gap-3 ms-auto">
-          <button class="btn btn-link text-on-surface-variant p-0" type="button" title="Settings">
-            <span class="material-symbols-outlined">settings</span>
-          </button>
-          <div class="d-none d-md-flex align-items-center gap-2 bg-surface-container rounded-pill px-3 py-2">
-            <div class="rounded-circle overflow-hidden border border-2" style="width: 36px; height: 36px; border-color: var(--primary-container);">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6DLkflinmLm5KG6Y__Ru26AyK4vCIuiMcY1AZ6nGTFMRv4qrf6HcEwAFs0xkxsxJ33hkEyTNTby_0nG5usuISSfrpc5S4eZBHGODbP037zYMvHjjuaWs_ANxW3uFAB4bFFlOGNvkwkhBKeDFxm4YIfFT9eC2Yay4Uh0AgbPJvEiXperqhcJhcTMeq_xQqJpVeTmFo_c3CjvLvzck_oRH0DkP-XkqJ7xTBiOB857dLj4JYcTi-wzSFAME2p36yuQvWDgJgM5pJ5lcj" alt="Avatar" class="w-100 h-100 object-fit-cover">
-            </div>
-            <span id="nama-profil" class="label-lg text-on-surface small">Student Name</span>
+          <span id="nama-profil" class="d-none d-sm-inline text-on-surface fw-semibold" style="font-size: 14px;">Student</span>
+          <div class="rounded-circle overflow-hidden bg-primary-fixed d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+            <span id="huruf-profil" class="fw-bold text-primary" style="font-size: 14px;">S</span>
           </div>
         </div>
       </div>
@@ -44,82 +146,141 @@
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow-1 pt-5">
-    <!-- Hero Section -->
-    <section class="py-5 position-relative overflow-hidden">
-      <!-- Decorative Background Blobs -->
-      <div class="position-absolute" style="top: -80px; right: -80px; width: 320px; height: 320px; background-color: rgba(84, 253, 196, 0.1); border-radius: 60% 40% 30% 70%; filter: blur(96px); z-index: -1;"></div>
-      <div class="position-absolute" style="bottom: -80px; left: -80px; width: 384px; height: 384px; background-color: rgba(216, 226, 255, 0.1); border-radius: 60% 40% 30% 70%; filter: blur(96px); z-index: -1;"></div>
+  <main class="flex-grow-1" style="padding-top: 80px;">
 
-      <div class="container-max margin-desktop">
-        <div class="row g-5 align-items-center">
+    <!-- Hero Section -->
+    <section class="position-relative overflow-hidden py-4 py-md-5 px-3 px-md-4">
+      <div class="hero-blob-1"></div>
+      <div class="hero-blob-2"></div>
+
+      <div class="container-max mx-auto" style="max-width: 1140px;">
+        <div class="row g-4 g-md-5 align-items-center">
+
           <!-- Left Content -->
           <div class="col-12 col-md-7">
-            <!-- Badge -->
-            <div class="d-inline-flex align-items-center gap-2 px-3 py-2 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-pill label-lg mb-4">
-              <span class="material-symbols-outlined" style="font-size: 20px;">star</span>
-              New Challenges Available!
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-2 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-pill mb-3" style="font-size: 0.85rem; font-weight: 600;">
+              <span class="material-symbols-outlined filled" style="font-size: 18px;">star</span>
+              Tantangan Baru Tersedia!
             </div>
 
-            <!-- Heading -->
-            <h2 class="headline-xl mb-4">
-              Ready to be a <span class="text-primary">Math Master?</span>
+            <h2 class="fw-bold mb-3" style="font-size: clamp(1.75rem, 5vw, 2.75rem); line-height: 1.2; font-family: 'Quicksand', sans-serif;">
+              Siap Jadi <span class="text-primary">Jagoan Matematika?</span>
             </h2>
 
-            <!-- Description -->
-            <p class="body-lg text-on-surface-variant mb-5" style="max-width: 500px;">
-              Join thousands of students who are making math their superpower. Play games, earn stars, and level up your brain!
+            <p class="text-on-surface-variant mb-4" style="max-width: 500px; font-size: 1.1rem; line-height: 1.6;">
+              Bergabung dengan ribuan siswa yang menjadikan matematika sebagai kekuatan super mereka. Main kuis, kumpulkan bintang!
             </p>
 
             <!-- Registration Card -->
-            <div class="bg-surface-container-lowest p-4 rounded-3 card-soft-shadow border border-2" style="border-color: var(--outline-variant); max-width: 450px;">
-              <form class="d-flex flex-column gap-4">
+            <div class="bg-surface-container-lowest p-4 rounded-3 card-soft-shadow border border-2" style="border-color: var(--outline-variant); max-width: 440px;">
+              <form class="d-flex flex-column gap-3">
                 <div>
-                  <label class="form-label label-lg text-on-surface-variant mb-2">Enter your name to start</label>
+                  <label for="input-nama" class="form-label text-on-surface-variant mb-1" style="font-size: 0.85rem; font-weight: 600;">Masukkan nama kamu untuk mulai</label>
                   <div class="position-relative">
-                    <!-- ID ditambahkan di sini untuk input nama -->
-                    <input id="input-nama" type="text" class="form-control" placeholder="Your Hero Name..." style="padding: 12px 24px; font-size: 24px; border: 2px solid var(--surface-container-highest);">
-                    <span class="material-symbols-outlined position-absolute end-3 top-50 translate-middle-y text-on-surface-variant" style="font-size: 24px;">face</span>
+                    <input id="input-nama" type="text" class="form-control" placeholder="Nama Jagoan..." style="padding: 14px 24px; font-size: 1.1rem; border: 2px solid var(--surface-container-highest); border-radius: 10px;">
+                    <span class="material-symbols-outlined position-absolute top-50 translate-middle-y text-on-surface-variant" style="font-size: 24px; right: 18px;" aria-hidden="true">face</span>
                   </div>
                 </div>
-                <!-- ID ditambahkan di sini untuk tombol -->
-                <button id="btn-mulai" type="button" class="btn btn-tertiary btn-lg w-100 chunky-button-tertiary d-flex align-items-center justify-content-center gap-2">
-                  Let's Play!
-                  <span class="material-symbols-outlined">rocket_launch</span>
+                <button id="btn-mulai" type="button" class="btn btn-tertiary w-100 chunky-button-tertiary d-flex align-items-center justify-content-center gap-2" style="padding: 14px 24px; font-size: 1.1rem; border-radius: 12px; font-family: 'Quicksand', sans-serif; font-weight: 700;">
+                  Ayo Main!
+                  <span class="material-symbols-outlined filled" style="font-size: 22px;" aria-hidden="true">rocket_launch</span>
                 </button>
               </form>
             </div>
           </div>
 
-          <!-- Right Content (Hero Image) -->
+          <!-- Right Content - Hero Image -->
           <div class="col-12 col-md-5 d-none d-md-block">
             <div class="position-relative">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuASfwRGZ5rjWqrTXNtmbci_ce5kwD7W4KSd9HGi9bcZdnYYu5NlmsraWY9iWvQgnpPw9h0L0MAPx4KSijrbNzrxee-dIS-nLOcg_SzOSAgIbYRwgnL7opdYxfo4ohz0bnOcQrmDiy69LRcis5VLUqWyD4d2gOokpFxzzUXloxgZHFcQSZS-KdpWlZ1QBdizE-H2HeW_12VFiZfbHM6X839QlsuB6t8TpfQSxs98JFDmzNcBf7610UHOhwkjooZIHVqA2V14G7x9qcPP" alt="Learning is fun" class="w-100 rounded-4 shadow-lg" style="transform: rotate(2deg); transition: transform 0.5s ease;">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuASfwRGZ5rjWqrTXNtmbci_ce5kwD7W4KSd9HGi9bcZdnYYu5NlmsraWY9iWvQgnpPw9h0L0MAPx4KSijrbNzrxee-dIS-nLOcg_SzOSAgIbYRwgnL7opdYxfo4ohz0bnOcQrmDiy69LRcis5VLUqWyD4d2gOokpFxzzUXloxgZHFcQSZS-KdpWlZ1QBdizE-H2HeW_12VFiZfbHM6X839QlsuB6t8TpfQSxs98JFDmzNcBf7610UHOhwkjooZIHVqA2V14G7x9qcPP" alt="Belajar Matematika" class="w-100 rounded-4 shadow-lg hero-img" style="object-fit: cover; aspect-ratio: 1; transform: rotate(2deg);">
 
-              Achievement Badge 1
-              <div class="position-absolute bg-surface-container-lowest p-3 rounded-2 card-soft-shadow border border-1" style="top: -32px; left: -32px; border-color: var(--outline-variant); animation: bounce 2s infinite;">
+              <!-- Floating Badge 1 -->
+              <div class="position-absolute bg-surface-container-lowest p-3 rounded-3 card-soft-shadow border badge-float" style="top: -20px; left: -20px; border-color: var(--outline-variant);">
                 <div class="d-flex align-items-center gap-2">
-                  <div class="rounded-circle bg-secondary-fixed d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                    <span class="material-symbols-outlined text-on-secondary-container">emoji_events</span>
+                  <div class="rounded-circle bg-secondary-fixed d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <span class="material-symbols-outlined filled text-on-secondary-container" style="font-size: 20px;">emoji_events</span>
                   </div>
                   <div>
-                    <p class="label-lg mb-0 fw-bold">Top Scorer</p>
-                    <p class="mb-0 small text-on-surface-variant">Level 12 reached!</p>
+                    <p class="mb-0 fw-bold" style="font-size: 0.8rem;">Skor Tertinggi</p>
+                    <p class="mb-0 text-on-surface-variant" style="font-size: 0.7rem;">Level 12!</p>
                   </div>
                 </div>
               </div>
 
-              <!-- Achievement Badge 2 -->
-              <div class="position-absolute bg-surface-container-lowest p-3 rounded-2 card-soft-shadow border border-1" style="bottom: -24px; right: -24px; border-color: var(--outline-variant);">
+              <!-- Floating Badge 2 -->
+              <div class="position-absolute bg-surface-container-lowest p-3 rounded-3 card-soft-shadow border badge-float-2" style="bottom: -16px; right: -16px; border-color: var(--outline-variant);">
                 <div class="d-flex align-items-center gap-2">
-                  <div class="rounded-circle bg-primary-fixed d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                    <span class="material-symbols-outlined text-primary">verified</span>
+                  <div class="rounded-circle bg-primary-fixed d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <span class="material-symbols-outlined filled text-primary" style="font-size: 20px;">verified</span>
                   </div>
                   <div>
-                    <p class="label-lg mb-0 fw-bold">Math Master</p>
-                    <p class="mb-0 small text-on-surface-variant">Verified Hero</p>
+                    <p class="mb-0 fw-bold" style="font-size: 0.8rem;">Jagoan Math</p>
+                    <p class="mb-0 text-on-surface-variant" style="font-size: 0.7rem;">Terverifikasi</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section class="py-4 py-md-5 px-3 px-md-4">
+      <div class="container-max mx-auto" style="max-width: 1140px;">
+        <div class="row g-3 g-md-4">
+          <!-- Feature 1 -->
+          <div class="col-12 col-md-4 fade-in fade-in-delay-1">
+            <div class="bento-card p-4 rounded-3" style="background-color: var(--primary-fixed); color: var(--on-primary-fixed);">
+              <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.8;" aria-hidden="true">sports_esports</span>
+              <div class="mt-auto pt-4">
+                <h3 class="fw-bold mb-2" style="font-size: 1.25rem; font-family: 'Quicksand', sans-serif;">Kuis Seru</h3>
+                <p class="mb-0" style="font-size: 0.9rem; opacity: 0.85;">Kumpulkan bintang dan buka level baru setiap kali menjawab soal dengan benar!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div class="col-12 col-md-4 fade-in fade-in-delay-2">
+            <div class="bento-card p-4 rounded-3" style="background-color: var(--secondary-container); color: var(--on-secondary-container);">
+              <span class="material-symbols-outlined" style="font-size: 48px; opacity: 0.8;" aria-hidden="true">auto_awesome</span>
+              <div class="mt-auto pt-4">
+                <h3 class="fw-bold mb-2" style="font-size: 1.25rem; font-family: 'Quicksand', sans-serif;">4 Kategori</h3>
+                <p class="mb-0" style="font-size: 0.9rem; opacity: 0.9;">Penjumlahan, Pengurangan, Perkalian, dan Pembagian — pilih sesuai kemampuanmu!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div class="col-12 col-md-4 fade-in fade-in-delay-3">
+            <div class="bento-card p-4 rounded-3 bg-surface-container-lowest border border-2 card-soft-shadow" style="border-color: var(--outline-variant);">
+              <span class="material-symbols-outlined text-tertiary" style="font-size: 48px;" aria-hidden="true">trending_up</span>
+              <div class="mt-auto pt-4">
+                <h3 class="fw-bold mb-2" style="font-size: 1.25rem; font-family: 'Quicksand', sans-serif;">Level Naik Terus</h3>
+                <p class="mb-0 text-on-surface-variant" style="font-size: 0.9rem;">Dari mudah sampai super sulit — lihat kemampuanmu berkembang!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 4 - Wide -->
+          <div class="col-12 col-md-6 fade-in fade-in-delay-4">
+            <div class="bento-wide p-4 rounded-3" style="background-color: var(--tertiary-fixed); color: var(--on-tertiary-fixed);">
+              <div class="rounded-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 64px; height: 64px; background: var(--tertiary);">
+                <span class="material-symbols-outlined text-on-tertiary" style="font-size: 32px;" aria-hidden="true">bolt</span>
+              </div>
+              <div>
+                <h3 class="fw-bold mb-1" style="font-size: 1.15rem; font-family: 'Quicksand', sans-serif;">Langsung Main</h3>
+                <p class="mb-0" style="font-size: 0.85rem; opacity: 0.9;">Tanpa ribet — tulis nama, pilih kategori, dan langsung jawab soal. Semudah itu!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 5 - Wide -->
+          <div class="col-12 col-md-6 fade-in fade-in-delay-5">
+            <div class="bento-wide p-4 rounded-3" style="background-color: var(--error-container); color: var(--on-error-container);">
+              <div class="rounded-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 64px; height: 64px; background: var(--error);">
+                <span class="material-symbols-outlined text-on-error" style="font-size: 32px;" aria-hidden="true">emoji_events</span>
+              </div>
+              <div>
+                <h3 class="fw-bold mb-1" style="font-size: 1.15rem; font-family: 'Quicksand', sans-serif;">Raih Skor Tertinggi</h3>
+                <p class="mb-0" style="font-size: 0.85rem; opacity: 0.9;">Tantang dirimu sendiri dan pecahkan rekor skor tertinggi di setiap level!</p>
               </div>
             </div>
           </div>
@@ -127,58 +288,36 @@
       </div>
     </section>
 
-    <!-- Features Grid -->
-    <section class="py-5">
-      <div class="container-max margin-desktop">
-        <div class="row g-4">
-          <!-- Feature 1: Gamified Quizzes -->
-          <div class="col-12 col-md-4">
-            <div class="bg-primary-fixed text-on-surface h-100 p-4 rounded-3 d-flex flex-column justify-content-between" style="min-height: 300px;">
-              <span class="material-symbols-outlined opacity-75" style="font-size: 48px;">sports_esports</span>
-              <div>
-                <h3 class="headline-md mb-2">Gamified Quizzes</h3>
-                <p class="body-md">Earn XP and unlock badges as you solve tricky math puzzles.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature 2: Smart Hints -->
-          <div class="col-12 col-md-4">
-            <div class="bg-secondary-container text-on-secondary-container h-100 p-4 rounded-3 d-flex flex-column justify-content-between" style="min-height: 300px;">
-              <span class="material-symbols-outlined opacity-75" style="font-size: 48px;">auto_awesome</span>
-              <div>
-                <h3 class="headline-md mb-2">Smart Hints</h3>
-                <p class="body-md">Never get stuck! Our buddy system gives you helpful tips when you need them.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature 3: Track Progress -->
-          <div class="col-12 col-md-4">
-            <div class="bg-surface-container-lowest h-100 p-4 rounded-3 border border-2 card-soft-shadow d-flex flex-column justify-content-between" style="min-height: 300px; border-color: var(--outline-variant);">
-              <span class="material-symbols-outlined text-tertiary opacity-75" style="font-size: 48px;">trending_up</span>
-              <div>
-                <h3 class="headline-md mb-2 text-on-surface">Track Progress</h3>
-                <p class="body-md text-on-surface-variant">See how much smarter you're getting with beautiful progress charts.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-surface-container-low border-top footer mt-auto">
-    <div class="text-center py-3 px-3">
-      <p class="body-md text-on-surface-variant mb-0">© 2026 Jagoan Math</p>
+  <footer class="bg-surface-container-low border-top mt-auto">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center px-3 px-md-4 py-4" style="max-width: 1140px; margin: 0 auto;">
+      <div class="text-center text-md-start mb-2 mb-md-0">
+        <span class="fw-bold text-secondary" style="font-family: 'Quicksand', sans-serif; font-size: 1.1rem;">Jagoan Math</span>
+        <p class="text-on-surface-variant mb-0" style="font-size: 0.75rem;">© 2026 Jagoan Math. Belajar matematika jadi seru!</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS (Optional, untuk fitur interaktif) -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- SCRIPT JAVASCRIPT MILIKMU DIHUBUNGKAN DI SINI -->
   <script src="js/app.js"></script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Fallback: show all fade-in elements after 2s in case observer doesn't fire
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in:not(.visible)').forEach(el => el.classList.add('visible'));
+    }, 2000);
+  </script>
 </body>
 </html>
