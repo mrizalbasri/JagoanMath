@@ -17,8 +17,8 @@
 
   <style>
     html, body {
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
+      overflow-x: hidden;
     }
     .score-display {
       font-size: clamp(3rem, 12vw, 5rem);
@@ -30,6 +30,38 @@
     }
     .stat-card:hover {
       transform: translateY(-2px);
+    }
+    @media (max-width: 767px) {
+      .score-display {
+        font-size: clamp(2.5rem, 10vw, 4rem) !important;
+      }
+      .stat-card {
+        padding: 0.6rem !important;
+      }
+      .stat-card .material-symbols-outlined {
+        font-size: 20px !important;
+      }
+      .stat-card p {
+        font-size: 0.7rem !important;
+      }
+      main {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        align-items: flex-start !important;
+      }
+      main .mb-4 {
+        margin-bottom: 1rem !important;
+      }
+      main .rounded-4.p-4 {
+        padding: 1.5rem 1rem !important;
+      }
+      .d-inline-flex.rounded-circle {
+        width: 60px !important;
+        height: 60px !important;
+      }
+      .d-inline-flex.rounded-circle .material-symbols-outlined {
+        font-size: 30px !important;
+      }
     }
   </style>
 </head>

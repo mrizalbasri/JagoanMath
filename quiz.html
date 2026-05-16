@@ -17,8 +17,8 @@
 
   <style>
     html, body {
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
+      overflow-x: hidden;
     }
     .quiz-option {
       transition: all 0.2s ease;
@@ -56,15 +56,25 @@
 
     @media (max-width: 767px) {
       .option-badge {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
       }
       .quiz-option {
-        padding: 0.75rem 1rem;
+        padding: 0.6rem 0.75rem;
       }
       .quiz-option .answer-text {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+      }
+      .question-card {
+        padding: 1.25rem 1rem !important;
+        border-radius: 1rem !important;
+      }
+      .question-display {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+      }
+      .progress.mb-4 {
+        margin-bottom: 0.75rem !important;
       }
     }
   </style>
